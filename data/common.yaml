@@ -6,4 +6,3 @@ base_linux::linux_sw_pkg:
           - 'htop'
           - 'sysstat'
           - 'vim'
-base_linux::root_ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDHCkyj+GITSwm5rLjWF4M5QL9Be2JmndA/4ueUDXROAYWgcttXHrHp8bzEB1vnUjhMufMSv/lk2+fbJ8mmu7Uu02PeMrlWSPdCnFXrfc9BxuPqRAVEXes9ZrOXzGmpK/U6KpAN5IlWGgiIA4B3MR7A4JwP36OU0Awdg7lqznZDy5M0t762DdPgkggsGjjKMLcUXHRDdG6trNc1oXQ74cGDml8Vb6g7hMQhpfVRdz1L3aJU6B9Vrd4pLxPCap1RnP4UjwJkqaNkKjGz9sRgiA7kel5hS/9kL+bLmYCF6nYvFMVBHzEomOPpsqsBNrVdeU1P+WHoVmojHMgt+g80mgdV'
