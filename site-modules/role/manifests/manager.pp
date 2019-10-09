@@ -1,9 +1,9 @@
-#  
-# role::directory_server
 #
-class role::directory_server {
+# role::manager
+#
+class role::manager {
   include ::profile::base_linux
   include ::profile::dns::client
-  include ::profile::dns::server
   include ::profile::consul::server
+  include ::profile::base_manager
 }

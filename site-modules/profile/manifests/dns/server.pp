@@ -1,3 +1,7 @@
+#
+# profile::dns::server
+#
+
 class profile::dns::server {
 
   include dns::server

@@ -1,9 +1,12 @@
+#
+# profile::dns::client
+#
 class profile::dns::client {
 
   $dir_ip = lookup( 'Address', undef, undef, '1.1.1.1' )
 
   case $facts['os']['name'] {
-    'windows': { 
+    'windows': {
       dsc_dnsserveraddress { $dir_ip:
         dsc_address        => $dir_ip,
         dsc_interfacealias => $facts['networking']['primary'],
@@ -15,7 +18,7 @@ class profile::dns::client {
         dsc_suffixsearchlist => 'node.consul',
       }
     }
-    /^(Debian|Ubuntu)$/: { 
+    /^(Debian|Ubuntu)$/: {
       class { 'netplan':
         config_file   => '/etc/netplan/50-cloud-init.yaml',
         ethernets     => {
@@ -23,7 +26,7 @@ class profile::dns::client {
             'dhcp4'       => true,
             'nameservers' => {
               'search'    => ['node.consul'],
-              'addresses' => [ "$dir_ip" ],
+              'addresses' => [ $dir_ip ],
             }
           }
         },
