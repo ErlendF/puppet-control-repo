@@ -33,5 +33,10 @@ class profile::base_manager {
     type   => 'ssh-rsa',
     key    => $ssh_key_aksel,
   }
+
+  file { '/home/ubuntu/test':
+    ensure  => present,
+    content => "test",
+  }
 }
 

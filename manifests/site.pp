@@ -13,9 +13,9 @@ node /lin\d?.node.consul/ {
 }
 node /(manager|mon).node.consul/ {
   include ::role::manager
-  #include ::profile::base_linux
-  #include ::profile::dns::client
-  #include ::profile::consul::server
+  include ::profile::base_linux
+  include ::profile::dns::client
+  include ::profile::consul::server
 }
 node 'dir.node.consul' {
   include ::role::directory_server
