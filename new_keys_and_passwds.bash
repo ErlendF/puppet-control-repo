@@ -10,9 +10,10 @@
 #done < <(grep -rH 'password:' hieradata/*)
 
 # Create a passwordless keypair for root ssh
-if [-f "$/root/.ssh/id_rsa"]; 
+if [ ! -f "/root/.ssh/id_rsa" ]; 
 then
-    ssh-keygen -q -N '' -f /root/.ssh/id_rsa  
+    ssh-keygen -q -N '' -f /root/.ssh/id_rsa 
+
 fi
 
 echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> data/common.yaml
