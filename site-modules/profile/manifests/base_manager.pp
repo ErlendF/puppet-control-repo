@@ -8,10 +8,6 @@ class profile::base_manager {
   $ssh_key_johan = lookup('base_manager::ubuntu_ssh_key_johan')
   $ssh_key_erlend = lookup('base_manager::ubuntu_ssh_key_erlend')
   $ssh_key_aksel = lookup('base_manager::ubuntu_ssh_key_aksel')
-  notify {"Erlend key: ${::profile::base_manager::ssk_key_erlend}": }
-
-
-  include ::profile::base_linux
 
   file { '/home/ubuntu/.ssh':
     ensure => 'directory',
@@ -36,13 +32,6 @@ class profile::base_manager {
     user   => 'ubuntu',
     type   => 'ssh-rsa',
     key    => $ssh_key_aksel,
-  }
-
-  $str = 'test'
-
-  file { '/home/ubuntu/test':
-    ensure  => present,
-    content => $str,
   }
 }
 

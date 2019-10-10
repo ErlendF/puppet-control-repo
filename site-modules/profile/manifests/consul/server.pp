@@ -1,3 +1,6 @@
+#
+# profile::consul::server
+#
 class profile::consul::server {
 
   package { 'unzip':
