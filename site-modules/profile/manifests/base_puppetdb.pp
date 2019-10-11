@@ -2,7 +2,6 @@
 # profile::base_puppetdb
 #
 class profile::base_puppetdb {
-  require ::profile::consul::client
 
   $puppetdb_host = 'puppetdb.node.consul'
   $postgres_host = 'puppetdb.node.consul'
