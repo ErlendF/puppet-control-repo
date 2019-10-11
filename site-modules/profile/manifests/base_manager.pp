@@ -1,8 +1,6 @@
 #
 # profile::base_manager
 #
-
-
 class profile::base_manager {
 # users should be able to ssh without password to manager
   $ssh_key_johan = lookup('base_manager::ubuntu_ssh_key_johan')
@@ -32,6 +30,13 @@ class profile::base_manager {
     user   => 'ubuntu',
     type   => 'ssh-rsa',
     key    => $ssh_key_aksel,
+  }
+
+
+  $puppetdb_host = 'mon.node.consul'
+    # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
+  class { 'puppetdb::master::config':
+  puppetdb_server => $puppetdb_host,
   }
 }
 
