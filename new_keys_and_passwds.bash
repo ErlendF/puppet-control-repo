@@ -15,14 +15,17 @@ then
     ssh-keygen -q -N '' -f /root/.ssh/id_rsa 
 fi
 
-#pushes new / current keys in to hiera 
-# needs  postrun: ['/bin/bash', '/etc/puppetlabs/code/environments/production/new_keys_and_passwds.bash'] in r10k.yaml
+# pushes new / current keys in to hiera 
+# needs  :postrun: ['/bin/bash', '/etc/puppetlabs/code/environments/production/new_keys_and_passwds.bash'] in r10k.yaml
 echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> /etc/puppetlabs/code/environments/production/data/common.yaml
 
+timestamp="(date +"%T")"
+
+
 if [ $? -eq 0 ] ; then
-        echo "r10k-postrun successfull" >> /root/log
+        echo "$(timestamp): r10k-postrun successfull" >> /root/log
         exit 0
 else
-        echo "ERROR: r10k-postrun failed" >> /root/log
+        echo "$(timestamp): r10k-postrun failed" >> /root/log
         exit 1
 fi
