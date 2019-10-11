@@ -15,4 +15,4 @@ then
     ssh-keygen -q -N '' -f /root/.ssh/id_rsa 
 fi
 
-echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> data/common.yaml
+echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> /etc/puppetlabs/code/environments/production/data/common.yaml
