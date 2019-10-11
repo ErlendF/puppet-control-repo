@@ -33,7 +33,7 @@ class profile::base_manager {
   }
 
 
-  $puppetdb_host = 'mon.node.consul'
+  $puppetdb_host = 'puppetdb.node.consul'
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
   class { 'puppetdb::master::config':
   puppetdb_server => $puppetdb_host,
