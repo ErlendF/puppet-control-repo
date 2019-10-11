@@ -1,5 +1,5 @@
-$puppetdb_host = 'mon.node.consul/'
-$postgres_host = 'mon.node.consul/'
+$puppetdb_host = 'mon.node.consul'
+$postgres_host = 'mon.node.consul'
 
 
 node default {
@@ -9,7 +9,7 @@ node /lin\d?.node.consul/ {
 #  class { 'os_hardening': }
   include ::role::web_server
 }
-node /(manager).node.consul/ {
+node 'manager.node.consul' {
   include ::role::manager
 
   # Here we configure the Puppet master to use PuppetDB,
@@ -18,7 +18,7 @@ node /(manager).node.consul/ {
   puppetdb_server => $puppetdb_host,
   }
 }
-node /(mon).node.consul/ {
+node 'mon.node.consul'{
   include ::role::manager
 
   # Here we install and configure PostgreSQL and the PuppetDB
