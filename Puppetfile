@@ -39,6 +39,7 @@ mod 'dcoxall-golang',         '1.2.0'
 mod 'puppetlabs-puppetdb',    '7.4.0'
 mod 'puppetlabs-postgresql',  '6.2.0'
 mod 'puppetlabs-apt',         '7.1.0'
+mod 'puppetlabs-firewall',    '2.1.0'
 
 mod 'dns',
   git:    'https://github.com/ppouliot/puppet-dns',
