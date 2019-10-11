@@ -1,5 +1,5 @@
 #  
-# role::directory_server
+# role::web_server
 #
 class role::web_server {
   include ::profile::base_linux
