@@ -45,25 +45,20 @@ class profile::base_manager {
     listen_address => '0.0.0.0',
   }
 
+
+  # Configure Apache
+  # Ensure it does *not* purge configuration files
+  class { 'apache':}
+  class { 'apache::mod::wsgi': }
+
   # Configure Puppetboard
   class { 'puppetboard':
     manage_git        => true,
     manage_virtualenv => true,
   }
-  # Configure Apache
-  # Ensure it does *not* purge configuration files
-  class { 'apache':
-    purge_configs => false,
-    mpm_module    => 'prefork',
-    default_vhost => true,
-    default_mods  => false,
+
+  # Access Puppetboard through pboard.example.com
+  class { 'puppetboard::apache::vhost':
+    vhost_name => 'pboard.localhost',
+    port       => 80,
   }
-
-  class { 'apache::mod::wsgi': }
-
- 
-
-  # Access Puppetboard from example.com/puppetboard
-  class { 'puppetboard::apache::conf': }
-  }
-
