@@ -53,19 +53,17 @@ class profile::base_manager {
   # Configure Apache
   # Ensure it does *not* purge configuration files
   class { 'apache':
-    purge_configs => true,
     mpm_module    => 'prefork',
-    default_vhost => false,
-    default_mods  => false,
   }
 
   class { 'apache::mod::wsgi': }
 
   # Configure Puppetboard
   class { 'puppetboard':
-    manage_git        => true,
-    manage_virtualenv => true,
-    unresponsive      => '1'
+    manage_git          => true,
+    manage_virtualenv   => true,
+    unresponsive        => '1',
+    default_environment => '*',
     }
 
   ## Access Puppetboard from manager.node.consul/puppetboard
@@ -74,6 +72,5 @@ class profile::base_manager {
 
     # Configure vhost for puppetboard
     class { 'puppetboard::apache::vhost':
-        vhost_name => 'manager.node.consul',
-        port       => '8088'
+        vhost_name => 'puppetboard.lan',
     }
