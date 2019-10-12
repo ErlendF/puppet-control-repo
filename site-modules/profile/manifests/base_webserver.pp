@@ -13,7 +13,8 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => 'go build -i -o /root/webserverRepo /root/webserverRepo/main.go',
+    command => 'go build -i -o web main.go', #parameterize which file to build?
+    path    => '/root/webserverRepo',
     require => [
       Class['golang'],
       Vcsrepo['/root/webserverRepo']
