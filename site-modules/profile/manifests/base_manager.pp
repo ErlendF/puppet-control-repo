@@ -35,7 +35,8 @@ class profile::base_manager {
 
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
   class { 'puppetdb::master::config':
-
+    manage_report_processor => true,
+    enable_reports          => true
   }
 
   # Here we install and configure PostgreSQL and the PuppetDB
@@ -43,6 +44,7 @@ class profile::base_manager {
   # listen for connections to the `$postgres_host`
   class { 'puppetdb':
     listen_address => '0.0.0.0',
+    report_ttl     => '7d'
   }
 
 
@@ -51,9 +53,9 @@ class profile::base_manager {
   # Configure Apache
   # Ensure it does *not* purge configuration files
   class { 'apache':
-    purge_configs => false,
+    purge_configs => true,
     mpm_module    => 'prefork',
-    default_vhost => true,
+    default_vhost => false,
     default_mods  => false,
   }
 
@@ -62,8 +64,16 @@ class profile::base_manager {
   # Configure Puppetboard
   class { 'puppetboard':
     manage_git        => true,
-    manage_virtualenv => true,}
+    manage_virtualenv => true,
+    unresponsive      => '1'
+    }
 
-  # Access Puppetboard from example.com/puppetboard
-  class { 'puppetboard::apache::conf': }
-  }
+  ## Access Puppetboard from manager.node.consul/puppetboard
+  #class { 'puppetboard::apache::conf': }
+  # }
+
+    # Configure vhost for puppetboard
+    class { 'puppetboard::apache::vhost':
+        vhost_name => 'manager.node.consul',
+        port       => '8088'
+    }
