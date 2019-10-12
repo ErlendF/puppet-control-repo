@@ -45,6 +45,7 @@ class profile::base_manager {
     listen_address => '0.0.0.0',
   }
 
+  # Configure Puppetboard
   class { 'puppetboard':
     manage_git        => true,
     manage_virtualenv => true,
@@ -60,8 +61,7 @@ class profile::base_manager {
 
   class { 'apache::mod::wsgi': }
 
-  # Configure Puppetboard
-  class { 'puppetboard': }
+ 
 
   # Access Puppetboard from example.com/puppetboard
   class { 'puppetboard::apache::conf': }
