@@ -48,6 +48,7 @@ class profile::base_manager {
   class { 'puppetboard':
     manage_git        => true,
     manage_virtualenv => true,
+    port              => '8888'
   }
 }
 
