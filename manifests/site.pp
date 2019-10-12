@@ -15,5 +15,5 @@ node 'dir.node.consul' {
   include ::role::directory_server
 }
 node 'puppetdb.node.consul'{
-  include ::role::puppetdb
+  #include ::role::puppetdb
 }
