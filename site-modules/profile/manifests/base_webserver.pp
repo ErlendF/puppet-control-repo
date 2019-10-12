@@ -7,9 +7,9 @@ class profile::base_webserver {
   }
 
   vcsrepo { '/root/webserverRepo':
-    ensure   => present,
+    ensure   => latest,
     provider => git,
-    source   => 'https://bitbucket.org/ErlendFonnes/test-rest/src/master/', #parameterize
+    source   => 'git@bitbucket.org:ErlendFonnes/test-rest.git', #parameterize
   }
 
   exec { 'build':
