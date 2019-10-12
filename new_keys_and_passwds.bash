@@ -19,7 +19,10 @@ fi
 # needs  :postrun: ['/bin/bash', '/etc/puppetlabs/code/environments/production/new_keys_and_passwds.bash'] in r10k.yaml
 echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> /etc/puppetlabs/code/environments/production/data/common.yaml
 
-timestamp="(date +"%T")"
+# Define a timestamp function
+timestamp() {
+  date +"%Y-%m-%d_%H-%M-%S"
+}
 
 
 if [ $? -eq 0 ] ; then
