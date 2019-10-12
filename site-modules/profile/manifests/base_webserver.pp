@@ -2,6 +2,8 @@
 # profile::base_webserver
 #
 class profile::base_webserver {
+  $
+
   class { 'golang':
     version => '1.13.1',
   }
@@ -20,9 +22,13 @@ class profile::base_webserver {
       Vcsrepo['/root/webserverRepo']
     ],
   }
-  # $settings = {
-  #   'Unit' => {
-  # 
-  #   }
-  # }
+  $settings = {
+    'Unit' => {
+      'Description' => 'Golang REST API',
+      'After'       => 'network.target auditd.service',
+    },
+    'Service' => {
+      #'EnvironmentFile' => ''
+    }
+  }
 }
