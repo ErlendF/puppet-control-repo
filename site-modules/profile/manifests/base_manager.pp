@@ -33,10 +33,24 @@ class profile::base_manager {
   }
 
 
-  $puppetdb_host = 'puppetdb.node.consul'
+  $puppetdb_host = 'manager.node.consul'
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
   class { 'puppetdb::master::config':
   puppetdb_server => $puppetdb_host,
+  }
+  $postgres_host = 'manager.node.consul'
+
+  # Here we install and configure PostgreSQL and the PuppetDB
+  # database instance, and tell PostgreSQL that it should
+  # listen for connections to the `$postgres_host`
+  class { 'puppetdb':
+    listen_addresses => $postgres_host,
+    database_host    => $puppetdb_host,
+  }
+
+  class { 'puppetboard':
+    manage_git        => true,
+    manage_virtualenv => true,
   }
 }
 
