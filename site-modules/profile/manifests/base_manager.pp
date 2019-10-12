@@ -62,7 +62,6 @@ class profile::base_manager {
   class { 'puppetboard':
     manage_git          => true,
     manage_virtualenv   => true,
-    unresponsive        => '1',
     default_environment => '*',
     }
 
