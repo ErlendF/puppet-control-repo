@@ -1,7 +1,7 @@
 #  
 # role::puppetdb
 #
-class role::puppetdbpuppetboad {
+class role::puppetdbpuppetboard {
   include ::profile::base_linux
   include ::profile::dns::client
   include ::profile::consul::client

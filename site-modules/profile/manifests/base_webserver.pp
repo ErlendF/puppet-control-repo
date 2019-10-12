@@ -2,33 +2,42 @@
 # profile::base_webserver
 #
 class profile::base_webserver {
-  $
+  $repopath = '/root/webserverRepo'
+  $binfile ='web'
 
   class { 'golang':
     version => '1.13.1',
   }
 
-  vcsrepo { '/root/webserverRepo':
+  vcsrepo { $repopath:
     ensure   => latest,
     provider => git,
     source   => 'git@bitbucket.org:ErlendFonnes/test-rest.git', #parameterize
   }
 
   exec { 'build':
-    command => 'go build -i -o web main.go', #parameterize which file to build?
-    path    => '/root/webserverRepo',
+    command => "go build -i -o ${binfile} main.go", #parameterize which file to build?
+    path    => $repopath,
     require => [
       Class['golang'],
-      Vcsrepo['/root/webserverRepo']
+      Vcsrepo[$repopath]
     ],
   }
   $settings = {
-    'Unit' => {
+    'Unit'    => {
       'Description' => 'Golang REST API',
       'After'       => 'network.target auditd.service',
     },
     'Service' => {
-      #'EnvironmentFile' => ''
+      'ExecStart'                => "${repopath}/${binfile}",
+      'ExecReload'               => "${repopath}/${binfile}",
+      'KillMode'                 => 'process',
+      'Restart'                  => 'always',
+      'RestartPreventExitStatus' => '255',
+      'Type'                     => 'simple',
+    },
+    'Install' => {
+      'WantedBy' => 'multi-user.target',
     }
   }
 }
