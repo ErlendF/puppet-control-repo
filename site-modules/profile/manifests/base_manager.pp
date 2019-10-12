@@ -72,5 +72,5 @@ class profile::base_manager {
 
     # Configure vhost for puppetboard
     class { 'puppetboard::apache::vhost':
-        vhost_name => 'puppetboard.lan',
+        vhost_name => '*',
     }
