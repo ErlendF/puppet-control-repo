@@ -23,6 +23,8 @@ class profile::base_webserver {
       Vcsrepo[$repopath]
     ],
   }
+
+  $defaults = { 'path' => "/etc/systemd/system/${binfile}.service"}
   $settings = {
     'Unit'    => {
       'Description' => 'Golang REST API',
@@ -40,4 +42,6 @@ class profile::base_webserver {
       'WantedBy' => 'multi-user.target',
     }
   }
+
+  create_ini_settings($settings, $defaults)
 }
