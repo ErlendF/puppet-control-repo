@@ -44,7 +44,7 @@ class profile::base_manager {
   # listen for connections to the `$postgres_host`
   class { 'puppetdb':
     listen_address => '0.0.0.0',
-    report_ttl     => '7d'
+    report_ttl     => '14d'
   }
 
 
@@ -71,6 +71,6 @@ class profile::base_manager {
 
     # Configure vhost for puppetboard
     class { 'puppetboard::apache::vhost':
-        vhost_name => '*',
+        vhost_name => 'manager.node.consul',
     }
 }
