@@ -48,18 +48,22 @@ class profile::base_manager {
 
   # Configure Apache
   # Ensure it does *not* purge configuration files
+  # Configure Apache
+  # Ensure it does *not* purge configuration files
   class { 'apache':
     purge_configs => false,
     mpm_module    => 'prefork',
     default_vhost => true,
-    default_mods  => false,}
+    default_mods  => false,
+  }
 
   class { 'apache::mod::wsgi': }
 
   # Configure Puppetboard
   class { 'puppetboard':
     manage_git        => true,
-    manage_virtualenv => true,
-  }
+    manage_virtualenv => true,}
 
-class { 'puppetboard::apache::conf': }
+  # Access Puppetboard from example.com/puppetboard
+  class { 'puppetboard::apache::conf': }
+  }
