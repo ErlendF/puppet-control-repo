@@ -10,13 +10,13 @@ class profile::base_puppetdb {
   # database instance, and tell PostgreSQL that it should
   # listen for connections to the `$postgres_host`
   #lass { 'puppetdb':
-    listen_addresses => $postgres_host,
-    database_host    => $puppetdb_host,
+  #  listen_addresses => $postgres_host,
+  #  database_host    => $puppetdb_host,
   #}
 
   #class { 'puppetboard':
-    manage_git        => true,
-    manage_virtualenv => true,
+  #  manage_git        => true,
+  #  manage_virtualenv => true,
   #}
 
 }
