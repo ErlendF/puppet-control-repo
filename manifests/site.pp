@@ -15,5 +15,8 @@ node 'dir.node.consul' {
   include ::role::directory_server
 }
 node 'puppetdb.node.consul'{
-  #include ::role::puppetdb
+  #include ::role::puppetdbpuppetboad
+}
+node 'godb.node.consul'{
+  contain ::role::postgres_server
 }
