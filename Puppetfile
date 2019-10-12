@@ -41,6 +41,8 @@ mod 'puppetlabs-postgresql',  '6.2.0'
 mod 'puppetlabs-apt',         '7.1.0'
 mod 'puppetlabs-firewall',    '2.1.0'
 mod 'puppet-puppetboard',     '5.0.0'
+mod 'puppet-python',          '3.0.1'
+
 
 mod 'dns',
   git:    'https://github.com/ppouliot/puppet-dns',
