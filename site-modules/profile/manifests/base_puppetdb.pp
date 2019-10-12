@@ -9,10 +9,14 @@ class profile::base_puppetdb {
   # Here we install and configure PostgreSQL and the PuppetDB
   # database instance, and tell PostgreSQL that it should
   # listen for connections to the `$postgres_host`
-  class { 'puppetdb::database::postgresql':
+  class { 'puppetdb':
     listen_addresses => $postgres_host,
+    database_host    => $puppetdb_host,
   }
-  class { 'puppetdb::server':
-    database_host => $puppetdb_host,
+
+  class { 'puppetboard':
+    manage_git        => true,
+    manage_virtualenv => true,
   }
+
 }
