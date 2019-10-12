@@ -6,7 +6,7 @@ class profile::base_postgresql {
     }
 
     postgresql::server::db { 'mydatabasename':
-      user     => 'verycoolman',
+      user     => 'erlenfon',
       password => postgresql_password('erlenfon', 'sup3rsm4rt'),
     }
 }
