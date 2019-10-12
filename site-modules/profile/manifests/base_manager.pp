@@ -74,3 +74,4 @@ class profile::base_manager {
     class { 'puppetboard::apache::vhost':
         vhost_name => '*',
     }
+}
