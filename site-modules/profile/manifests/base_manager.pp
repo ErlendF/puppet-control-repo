@@ -59,6 +59,6 @@ class profile::base_manager {
 
   # Access Puppetboard through pboard.example.com
   class { 'puppetboard::apache::vhost':
-    vhost_name => 'pboard.localhost',
-    port       => 80,
+    vhost_name => 'manager.node.consul',
+    wsgi_alias => '/pboard',
   }
