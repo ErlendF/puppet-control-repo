@@ -8,6 +8,15 @@ image: puppet/puppet-dev-tools
 pipelines:
   default:
     - step:
-        name: puppet-lint
+        name: syntax-check
         script:
           - "find . -name '*.pp' | xargs puppet parser validate"
+    - step:
+        name: puppet-lint
+        script:
+          - ./puppet-lint.py --err
+    - step:
+        name: puppet-lint-doc
+        script:
+          - ./puppet-lint.py ---doc
+

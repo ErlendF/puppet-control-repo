@@ -21,8 +21,7 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => "/usr/local/go/bin/go build -i -o ${binfile} main.go", #parameterize which file to build?
-    path    => $repopath,
+    command => "/usr/local/go/bin/go build -i -o ${repopath}/${binfile} ${repopath}/main.go", #parameterize which file to build?
     require => [
       Class['golang'],
       Vcsrepo[$repopath]
