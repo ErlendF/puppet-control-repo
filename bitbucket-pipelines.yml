@@ -14,9 +14,10 @@ pipelines:
     - step:
         name: puppet-lint
         script:
-          - ./puppet-lint.py --err
+          - "find . -name '*.pp' | xargs puppet-lint --err"
     - step:
         name: puppet-lint-doc
+        allow_failure: true
         script:
-          - ./puppet-lint.py ---doc
+          - "find . -name '*.pp' | xargs puppet-lint --doc"
 
