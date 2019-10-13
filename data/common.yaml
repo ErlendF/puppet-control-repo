@@ -14,5 +14,6 @@ base_manager::ubuntu_ssh_key_aksel: AAAAB3NzaC1yc2EAAAADAQABAAABAQCdwWNVf7u/+QGo
 base_puppetdb::puppetdb_host: puppetdb.node.consul
 base_puppetdb::postgres_host: puppetdb.node.consul
 
-base_postgresql::uname: go
 base_postgresql::pass: land
+base_postgresql::uname: go
+

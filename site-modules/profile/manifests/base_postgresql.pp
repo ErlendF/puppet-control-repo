@@ -4,7 +4,7 @@
 class profile::base_postgresql {
 
   $uname = lookup('base_postgresql::uname')
-  $pass = lookup('base_postgresql::pass')
+  $pass  = lookup('base_postgresql::pass')
 
   class { 'postgresql::server':
   }
