@@ -3,7 +3,8 @@
 #
 class profile::base_webserver {
   $repopath = '/root/webserverRepo'
-  $binfile ='web'
+  $bindir ='web'
+  $apiname = 'test'
 
   class { 'golang':
     version => '1.13.1',
@@ -11,6 +12,10 @@ class profile::base_webserver {
 
   package { 'git':
     ensure => latest,
+  }
+
+  file { $bindir:
+    ensure => 'directory',
   }
 
   vcsrepo { $repopath:
@@ -21,22 +26,24 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => "/usr/local/go/bin/go build -i -o ${repopath}/${binfile} ${repopath}/main.go", #parameterize which file to build?
+    command => "/usr/local/go/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
+    path    => $repopath,
     require => [
+      File[$bindir],
       Class['golang'],
       Vcsrepo[$repopath]
     ],
   }
 
-  $defaults = { 'path' => "/etc/systemd/system/${binfile}.service"}
+  $defaults = { 'path' => "/etc/systemd/system/${bindir}.service"}
   $settings = {
     'Unit'    => {
       'Description' => 'Golang REST API',
       'After'       => 'network.target auditd.service',
     },
     'Service' => {
-      'ExecStart'                => "${repopath}/${binfile}",
-      'ExecReload'               => "${repopath}/${binfile}",
+      'ExecStart'                => "${repopath}/${bindir}/${apiname}",
+      'ExecReload'               => "${repopath}/${bindir}/${apiname}",
       'KillMode'                 => 'process',
       'Restart'                  => 'always',
       'RestartPreventExitStatus' => '255',
@@ -47,12 +54,13 @@ class profile::base_webserver {
     }
   }
 
-  # file { "/etc/systemd/system/${binfile}.service":
+  # file { "/etc/systemd/system/${bindir}.service":
   #   ensure => present,
   # }
 
   service {'webserver':
     ensure    => 'running',
     subscribe => create_ini_settings($settings, $defaults),
+    require   => Exec['build'],
   }
 }
