@@ -28,12 +28,13 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => "cd ${repopath} && ${$golangworkspace}/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
-    require => [
+    command   => "${golangworkspace}/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
+    require   => [
       File["${repopath}/${bindir}"],
-      Class['golang'],
-      Vcsrepo[$repopath]
+      Class['golang']
     ],
+    cwd       => $repopath,
+    subscribe => Vcsrepo[$repopath],
   }
 
   $defaults = { 'path' => "/etc/systemd/system/${bindir}.service"}
