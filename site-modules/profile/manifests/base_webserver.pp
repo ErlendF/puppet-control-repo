@@ -5,9 +5,11 @@ class profile::base_webserver {
   $repopath = '/root/webserverRepo'
   $bindir ='web'
   $apiname = 'test'
+  $golangworkspace = '/usr/local/go'
 
   class { 'golang':
-    version => '1.13.1',
+    version   => '1.13.1',
+    workspace => $golangworkspace,
   }
 
   package { 'git':
@@ -26,9 +28,9 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => "cd ${repopath} && /usr/local/go/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
+    command => "cd ${repopath} && ${$golangworkspace}/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
     require => [
-      File[$bindir],
+      File["${repopath}/${bindir}"],
       Class['golang'],
       Vcsrepo[$repopath]
     ],
