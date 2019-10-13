@@ -48,10 +48,12 @@ class profile::base_webserver {
     }
   }
 
-  create_ini_settings($settings, $defaults)
+  # file { "/etc/systemd/system/${binfile}.service":
+  #   ensure => present,
+  # }
 
   service {'webserver':
     ensure    => 'running',
-    subscribe => File["/etc/systemd/system/${binfile}.service"],
+    subscribe => create_ini_settings($settings, $defaults),
   }
 }
