@@ -14,7 +14,7 @@ class profile::base_webserver {
     ensure => latest,
   }
 
-  file { $bindir:
+  file { "${repopath}/${bindir}":
     ensure => 'directory',
   }
 
@@ -26,8 +26,7 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => "/usr/local/go/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
-    path    => $repopath,
+    command => "cd ${repopath} && /usr/local/go/bin/go build -i -o ${bindir} ./...", #parameterize which file to build?
     require => [
       File[$bindir],
       Class['golang'],
