@@ -9,10 +9,15 @@ class profile::base_webserver {
     version => '1.13.1',
   }
 
+  package { 'git':
+    ensure => latest,
+  }
+
   vcsrepo { $repopath:
     ensure   => latest,
     provider => git,
-    source   => 'git@bitbucket.org:ErlendFonnes/test-rest.git', #parameterize
+    source   => 'https://bitbucket.org/ErlendFonnes/test-rest.git', #parameterize
+    require  => Package['git'],
   }
 
   exec { 'build':

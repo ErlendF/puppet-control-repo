@@ -7,5 +7,5 @@ class role::postgres_server {
   contain ::profile::dns::client
   contain ::profile::consul::client
   contain ::profile::base_postgresql
-  #Class['::profile::consul::client'] -> Class['::profile::base_postgresql'] # for future use (if consul data is needed )
+  #Class['::profile::consul::client'] -> Class['::profile::base_postgresql'] # for future use (when consul data is needed )
 }

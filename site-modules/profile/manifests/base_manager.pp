@@ -32,45 +32,11 @@ class profile::base_manager {
     key    => $ssh_key_aksel,
   }
 
-
+  $puppetdb_host = lookup('base_puppetdb::puppetdb_host')
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
   class { 'puppetdb::master::config':
     manage_report_processor => true,
-    enable_reports          => true
+    enable_reports          => true,
+    puppetdb_server         => $puppetdb_host,
   }
-
-  # Here we install and configure PostgreSQL and the PuppetDB
-  # database instance, and tell PostgreSQL that it should
-  # listen for connections to the `$postgres_host`
-  class { 'puppetdb':
-    listen_address => '0.0.0.0',
-    report_ttl     => '14d'
-  }
-
-
-  # Configure Apache
-  # Ensure it does *not* purge configuration files
-  # Configure Apache
-  # Ensure it does *not* purge configuration files
-  class { 'apache':
-    mpm_module    => 'prefork',
-  }
-
-  class { 'apache::mod::wsgi': }
-
-  # Configure Puppetboard
-  class { 'puppetboard':
-    manage_git          => true,
-    manage_virtualenv   => true,
-    default_environment => '*',
-    }
-
-  ## Access Puppetboard from manager.node.consul/puppetboard
-  #class { 'puppetboard::apache::conf': }
-  # }
-
-    # Configure vhost for puppetboard
-    class { 'puppetboard::apache::vhost':
-        vhost_name => 'manager.node.consul',
-    }
 }

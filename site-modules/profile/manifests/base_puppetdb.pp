@@ -3,20 +3,31 @@
 #
 class profile::base_puppetdb {
 
-  $puppetdb_host = 'puppetdb.node.consul'
-  $postgres_host = 'puppetdb.node.consul'
+  $puppetdb_host = lookup('base_puppetdb::puppetdb_host')
+  $postgres_host = lookup('base_puppetdb::postgres_host')
 
   # Here we install and configure PostgreSQL and the PuppetDB
-  # database instance, and tell PostgreSQL that it should
-  # listen for connections to the `$postgres_host`
-  #lass { 'puppetdb':
-  #  listen_addresses => $postgres_host,
-  #  database_host    => $puppetdb_host,
-  #}
+  class { 'puppetdb':
+    listen_address => '0.0.0.0',
+    report_ttl     => '14d'
+  }
 
-  #class { 'puppetboard':
-  #  manage_git        => true,
-  #  manage_virtualenv => true,
-  #}
+  # Configure Apache
+  class { 'apache':
+    mpm_module    => 'prefork',
+  }
+  class { 'apache::mod::wsgi': }
 
+  # Configure Puppetboard
+  class { 'puppetboard':
+    manage_git          => true,
+    manage_virtualenv   => true,
+    default_environment => '*',
+    }
+
+    # Configure vhost for puppetboard
+  class { 'puppetboard::apache::vhost':
+        vhost_name => $puppetdb_host,
+  }
 }
+
