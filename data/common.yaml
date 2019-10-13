@@ -17,3 +17,4 @@ base_puppetdb::postgres_host: puppetdb.node.consul
 base_postgresql::pass: land
 base_postgresql::uname: go
 
+haproxy::ip: 10.0.0.1

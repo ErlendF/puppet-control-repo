@@ -2,8 +2,14 @@
 # ::profile::haproxy
 #
 class profile::haproxy {
-    notify { 'HAproxy is here yes :-)': }
+    notify { "min ip er ${facts['networking']['ip']}": }
+
+    # $isp = lookup('haproxy::ip')
 
     include ::haproxy
+    haproxy::listen { 'balancer':
+      collect_exported => false,
+      ipaddress        => $facts['networking']['ip'],
+    }
 }
 
