@@ -3,7 +3,7 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: dtg/puppet:16.04
+image: puppet/puppet-dev-tools
 
 pipelines:
   default:
