@@ -21,7 +21,7 @@ class profile::base_webserver {
   }
 
   exec { 'build':
-    command => "go build -i -o ${binfile} main.go", #parameterize which file to build?
+    command => "/usr/local/go/bin/go build -i -o ${binfile} main.go", #parameterize which file to build?
     path    => $repopath,
     require => [
       Class['golang'],
@@ -49,4 +49,9 @@ class profile::base_webserver {
   }
 
   create_ini_settings($settings, $defaults)
+
+  service {'webserver':
+    ensure    => 'running',
+    subscribe => File["/etc/systemd/system/${binfile}.service"],
+  }
 }
