@@ -1,0 +1,14 @@
+[Unit]
+Description=my_go_website
+After=network.target auditd.service
+
+[Service]
+ExecStart=/root/webserverRepo/web/test
+ExecReload=/root/webserverRepo/web/test
+KillMode=process
+Restart=always
+RestartPreventExitStatus=255
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
