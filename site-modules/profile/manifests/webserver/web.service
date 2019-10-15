@@ -1,0 +1,17 @@
+  $defaults = { 'path' => "/etc/systemd/system/${bindir}.service"}
+  $settings = {
+    'Unit'    => {
+      'Description' => 'Golang REST API',
+      'After'       => 'network.target auditd.service',
+    },
+    'Service' => {
+      'ExecStart'                => "${repopath}/${bindir}/${apiname}",
+      'ExecReload'               => "${repopath}/${bindir}/${apiname}",
+      'KillMode'                 => 'process',
+      'Restart'                  => 'always',
+      'RestartPreventExitStatus' => '255',
+      'Type'                     => 'simple',
+    },
+    'Install' => {
+      'WantedBy' => 'multi-user.target',
+    }

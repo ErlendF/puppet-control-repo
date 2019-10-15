@@ -9,12 +9,12 @@ class profile::haproxy {
     include ::haproxy
     haproxy::listen { 'balancer':
       collect_exported => false,
-      ipaddress        => $facts['networking']['ip'],
+      ipaddress        => '*',
       ports            => '80',
     }
     haproxy::balancermember { 'puppetserver':
       listening_service => 'balancer',
-      ipaddresses       => '10.212.138.211',
+      ipaddresses       => '192.168.180.104',            # get from consul for dynamic(?)
       ports             => '5000',
       options           => 'check',
     }
