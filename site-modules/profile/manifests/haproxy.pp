@@ -10,6 +10,13 @@ class profile::haproxy {
     haproxy::listen { 'balancer':
       collect_exported => false,
       ipaddress        => $facts['networking']['ip'],
+      ports            => '80',
+    }
+    haproxy::balancemember { 'puppetserver':
+      listening_service => 'balancer',
+      ipaddresses       => '10.212.138.211',
+      ports             => '5000',
+      options           => 'check',
     }
 }
 
