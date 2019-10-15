@@ -37,17 +37,29 @@ class profile::webserver::base_webserver {
     subscribe   => Vcsrepo[$repopath],
   }
 
-  ini_setting { "exec start":
+  ini_setting { 'ExecStart':
     ensure  => present,
-    path    => "puppet:///modules/${module_name}/foo.service",
+    path    => "puppet:///modules/${module_name}/web.service",
     section => 'Service',
     setting => 'ExecStart',
-    value   => 'quux',
+    value   => "${repopath}/${bindir}/${apiname}",
   }
 
-  systemd::unit_file { 'foo.service':
-    source => "puppet:///modules/${module_name}/foo.service",
-    enable => true,
-    active => true,
+  ini_setting { 'ExecReload':
+    ensure  => present,
+    path    => "puppet:///modules/${module_name}/web.service",
+    section => 'Service',
+    setting => 'ExecReload',
+    value   => "${repopath}/${bindir}/${apiname}",
+  }
+
+  systemd::unit_file { 'web.service':
+    source  => "puppet:///modules/${module_name}/web.service",
+    enable  => true,
+    active  => true,
+    require => [
+      Ini_setting['ExecStart'],
+      Ini_setting['ExecReload'],
+    ],
   }
 }

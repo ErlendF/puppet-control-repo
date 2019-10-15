@@ -14,9 +14,9 @@ class profile::haproxy {
     }
     haproxy::balancermember { 'puppetserver':
       listening_service => 'balancer',
-      ipaddresses       => '192.168.180.104',            # get from consul for dynamic(?)
+      ipaddresses       => 'puppetdb.node.consul',            # get from consul for dynamic(?)
       ports             => '5000',
       options           => 'check',
-    }
+    } 
 }
 
