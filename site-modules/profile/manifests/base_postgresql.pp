@@ -1,5 +1,6 @@
 #
 # ::profile::base_postgresql
+# Sets up PostgreSQL on a server 
 #
 class profile::base_postgresql {
 

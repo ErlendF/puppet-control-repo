@@ -1,11 +1,8 @@
 #
 # ::profile::haproxy
+# Sets up the HAproxy service for loadbalancing the web-service
 #
 class profile::haproxy {
-    notify { "min ip er ${facts['networking']['ip']}": }
-
-    # $isp = lookup('haproxy::ip')
-
     include ::haproxy
     haproxy::listen { 'balancer':
       collect_exported => false,

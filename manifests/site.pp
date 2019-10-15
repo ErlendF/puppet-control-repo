@@ -9,7 +9,8 @@ node 'manager.node.consul' {
   include ::role::manager
 }
 node 'mon.node.consul'{
-  include ::role::manager
+  #include ::role::manager
+  include ::role::web_server    # to see if node reports to puppetboard
 }
 node 'dir.node.consul' {
   include ::role::directory_server

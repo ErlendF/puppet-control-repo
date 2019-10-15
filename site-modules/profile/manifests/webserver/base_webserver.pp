@@ -37,29 +37,19 @@ class profile::webserver::base_webserver {
     subscribe   => Vcsrepo[$repopath],
   }
 
-  ini_setting { 'ExecStart':
-    ensure  => present,
-    path    => "puppet:///modules/${module_name}/web.service",
-    section => 'Service',
-    setting => 'ExecStart',
-    value   => "${repopath}/${bindir}/${apiname}",
-  }
+  include systemd::systemctl::daemon_reload
 
-  ini_setting { 'ExecReload':
-    ensure  => present,
-    path    => "puppet:///modules/${module_name}/web.service",
-    section => 'Service',
-    setting => 'ExecReload',
-    value   => "${repopath}/${bindir}/${apiname}",
+  file { '/usr/lib/systemd/system/web.service':
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => "puppet:///modules/${module_name}/web.service",
   }
+  ~> Class['systemd::systemctl::daemon_reload']
 
-  systemd::unit_file { 'web.service':
-    source  => "puppet:///modules/${module_name}/web.service",
-    enable  => true,
-    active  => true,
-    require => [
-      Ini_setting['ExecStart'],
-      Ini_setting['ExecReload'],
-    ],
+  service {'foo':
+    ensure    => 'running',
+    subscribe => File['/usr/lib/systemd/system/web.service'],
   }
 }
