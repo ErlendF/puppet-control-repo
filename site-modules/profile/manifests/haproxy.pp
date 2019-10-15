@@ -14,7 +14,7 @@ class profile::haproxy {
       ipaddresses       => 'puppetdb.node.consul',
       ports             => '5000',
       options           => 'check',
-    } 
+    }
 
     haproxy::listen { 'balancer':
       collect_exported => false,
