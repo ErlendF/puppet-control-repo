@@ -22,3 +22,4 @@ haproxy::ip: 10.0.0.1
 webserver::base_webserver::repopath: /root/webserverRepo
 webserver::base_webserver::bindir: web
 webserver::base_webserver::apiname: test
+webserver::base_webserver::repourl: https://bitbucket.org/ErlendFonnes/test-rest.git

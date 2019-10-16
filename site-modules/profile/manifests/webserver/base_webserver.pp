@@ -5,6 +5,7 @@ class profile::webserver::base_webserver {
   $repopath = lookup('webserver::base_webserver::repopath')
   $bindir = lookup('webserver::base_webserver::bindir')
   $apiname = lookup('webserver::base_webserver::apiname')
+  $repourl = lookup('webserver::base_webserver::repourl')
 
   notify { "Hi, I am ${module_name}": }
 
@@ -23,7 +24,7 @@ class profile::webserver::base_webserver {
   vcsrepo { $repopath:
     ensure   => latest,
     provider => git,
-    source   => 'https://bitbucket.org/ErlendFonnes/test-rest.git', #parameterize
+    source   => $repourl, #parameterize
     require  => Package['git'],
   }
 
@@ -39,19 +40,26 @@ class profile::webserver::base_webserver {
     subscribe   => Vcsrepo[$repopath],
   }
 
-  include systemd::systemctl::daemon_reload
+  #include systemd::systemctl::daemon_reload
 
-  file { '/usr/lib/systemd/system/web.service':
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+  systemd::unit_file { 'web.service':
     source => "puppet:///modules/${module_name}/web.service",
   }
-  ~> Class['systemd::systemctl::daemon_reload']
-
-  service {'foo':
-    ensure    => 'running',
-    subscribe => File['/usr/lib/systemd/system/web.service'],
+  ~> service {'web':
+    ensure => 'running',
   }
+
+  # file { '/usr/lib/systemd/system/web.service':
+  #   ensure => file,
+  #   owner  => 'root',
+  #   group  => 'root',
+  #   mode   => '0644',
+  #   source => "puppet:///modules/${module_name}/web.service",
+  # }
+  # ~> Class['systemd::systemctl::daemon_reload']
+
+  # service {'foo':
+  #   ensure    => 'running',
+  #   subscribe => File['/usr/lib/systemd/system/web.service'],
+  # }
 }
