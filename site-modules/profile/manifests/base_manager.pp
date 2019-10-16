@@ -35,8 +35,9 @@ class profile::base_manager {
   $puppetdb_host = lookup('base_puppetdb::puppetdb_host')
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
   class { 'puppetdb::master::config':
-    manage_report_processor => true,
-    enable_reports          => true,
-    puppetdb_server         => $puppetdb_host,
+    manage_report_processor     => true,
+    enable_reports              => true,
+    puppetdb_server             => $puppetdb_host,
+    puppetdb_soft_write_failure => true,
   }
 }
