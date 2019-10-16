@@ -5,6 +5,8 @@
 #
 class profile::haproxy {
     include ::haproxy
+
+    # Forwarder for puppetboard
     haproxy::listen { 'forwarder':
       collect_exported => false,
       ipaddress        => '*',
@@ -17,6 +19,7 @@ class profile::haproxy {
       options           => 'check',
     }
 
+    # Balancer for the RESTful Golang API
     haproxy::listen { 'balancer':
       collect_exported => false,
       ipaddress        => '*',
