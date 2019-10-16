@@ -26,12 +26,13 @@ class profile::webserver::base_webserver {
     source   => $repo_url,
     require  => Package['git'],
   }
-  #TODO: make more idempotent
+
   exec { 'build':
     command     => "go build -i -o ${bin_dir} ./...",
     cwd         => $repo_path,
     path        => '/usr/local/go/bin',
     environment => ['GOPATH=/vagrant', 'HOME=/root'],
+    refreshonly => true,  # should only run when Vcsrepo is updated
     require     => [
       File["${repo_path}/${bin_dir}"],
       Class['golang']

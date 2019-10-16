@@ -9,10 +9,18 @@ pipelines:
   default:
     - step:
         name: syntax-check
+        caches:
+          - docker
         script:
           - "find . -name '*.pp' | xargs puppet parser validate"
     - step:
         name: puppet-lint
+        caches:
+          - docker
         script:
-          - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings "
+          - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
+#    - step:
+#        name: rspec-tests
+#        script:
+#          - "pdk test unit"
 
