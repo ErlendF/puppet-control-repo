@@ -46,7 +46,7 @@ class profile::webserver::base_webserver {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => "puppet:///modules/${module_name}/web.service",
+    source => "puppet:///modules/${module_name}/files/web.service",
   }
   ~> Class['systemd::systemctl::daemon_reload']
 
