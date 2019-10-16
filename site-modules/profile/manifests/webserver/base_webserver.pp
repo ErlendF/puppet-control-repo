@@ -2,12 +2,11 @@
 # profile::base_webserver
 #
 class profile::webserver::base_webserver {
-  $repopath = lookup('webserver::base_webserver::repopath')
-  $bindir = lookup('webserver::base_webserver::bindir')
-  $apiname = lookup('webserver::base_webserver::apiname')
-  $repourl = lookup('webserver::base_webserver::repourl')
-
-  notify { "Hi, I am ${module_name}": }
+  $repo_path = lookup('webserver::base_webserver::repo_path')
+  $bin_dir = lookup('webserver::base_webserver::bin_dir')
+  $api_name = lookup('webserver::base_webserver::api_name')
+  $repo_url = lookup('webserver::base_webserver::repo_url')
+  $service_name = lookup('webserver::base_webserver::service_name')
 
   class { 'golang':
     version   => '1.13.1',
@@ -17,49 +16,34 @@ class profile::webserver::base_webserver {
     ensure => latest,
   }
 
-  file { "${repopath}/${bindir}":
+  file { "${repo_path}/${bin_dir}":
     ensure => 'directory',
   }
 
-  vcsrepo { $repopath:
+  vcsrepo { $repo_path:
     ensure   => latest,
     provider => git,
-    source   => $repourl, #parameterize
+    source   => $repo_url,
     require  => Package['git'],
   }
-
+  #TODO: make more idempotent
   exec { 'build':
-    command     => "go build -i -o ${bindir} ./...", #parameterize which file to build?
-    cwd         => $repopath,
+    command     => "go build -i -o ${bin_dir} ./...",
+    cwd         => $repo_path,
     path        => '/usr/local/go/bin',
     environment => ['GOPATH=/vagrant', 'HOME=/root'],
     require     => [
-      File["${repopath}/${bindir}"],
+      File["${repo_path}/${bin_dir}"],
       Class['golang']
     ],
-    subscribe   => Vcsrepo[$repopath],
+    subscribe   => Vcsrepo[$repo_path],
   }
-
-  #include systemd::systemctl::daemon_reload
 
   systemd::unit_file { 'web.service':
-    source => "puppet:///modules/${module_name}/web.service",
+    source => "puppet:///modules/${module_name}/${service_name}.service",
   }
-  ~> service {'web':
-    ensure => 'running',
+  ~> service { $service_name:
+    ensure    => 'running',
+    subscribe => Exec['build'],
   }
-
-  # file { '/usr/lib/systemd/system/web.service':
-  #   ensure => file,
-  #   owner  => 'root',
-  #   group  => 'root',
-  #   mode   => '0644',
-  #   source => "puppet:///modules/${module_name}/web.service",
-  # }
-  # ~> Class['systemd::systemctl::daemon_reload']
-
-  # service {'foo':
-  #   ensure    => 'running',
-  #   subscribe => File['/usr/lib/systemd/system/web.service'],
-  # }
 }

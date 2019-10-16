@@ -19,7 +19,8 @@ base_postgresql::uname: go
 
 haproxy::ip: 10.0.0.1
 
-webserver::base_webserver::repopath: /root/webserverRepo
-webserver::base_webserver::bindir: web
-webserver::base_webserver::apiname: test
-webserver::base_webserver::repourl: https://bitbucket.org/ErlendFonnes/test-rest.git
+webserver::base_webserver::repo_path: /root/webserverRepo
+webserver::base_webserver::bin_dir: web
+webserver::base_webserver::api_name: test
+webserver::base_webserver::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.git
+webserver::base_webserver::service_name: web
