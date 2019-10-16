@@ -6,6 +6,8 @@ class profile::webserver::base_webserver {
   $bindir = lookup('webserver::base_webserver::bindir')
   $apiname = lookup('webserver::base_webserver::apiname')
 
+  notify { "Hi, I am ${module_name}": }
+
   class { 'golang':
     version   => '1.13.1',
   }

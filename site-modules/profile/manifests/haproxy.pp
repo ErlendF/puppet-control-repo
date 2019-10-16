@@ -1,6 +1,7 @@
 #
 # ::profile::haproxy
-# Sets up the HAproxy service for loadbalancing the web-service
+# Sets up the HAproxy service for loadbalancing the web-service 
+# and puppetboard/puppetdb
 #
 class profile::haproxy {
     include ::haproxy
