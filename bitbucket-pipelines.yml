@@ -10,17 +10,25 @@ pipelines:
     - step:
         name: syntax-check
         caches:
-          - docker
+          - puppet/puppet-dev-tools
         script:
           - "find . -name '*.pp' | xargs puppet parser validate"
     - step:
         name: puppet-lint
         caches:
-          - docker
+          - puppet/puppet-dev-tools
         script:
           - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
 #    - step:
-#        name: rspec-tests
+#        name: unit-profile
+#        caches:
+#          - puppet/puppet-dev-tools
 #        script:
-#          - "pdk test unit"
+#          - "cd ./site-modules/profile && pdk test unit"
+#    - step:
+#        name: unit-role
+#        caches:
+#          - puppet/puppet-dev-tools
+#        script:
+#          - "cd ./site-modules/role && pdk test unit"
 
