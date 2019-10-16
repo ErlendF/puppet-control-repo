@@ -9,19 +9,13 @@ pipelines:
   default:
     - step:
         name: syntax-check
-        services: 
-          - docker
-        caches:
-          - docker
         script:
+          - "find . -name '*.pp'"
           - "find . -name '*.pp' | xargs puppet parser validate"
     - step:
         name: puppet-lint
-        services: 
-          - docker
-        caches:
-          - docker
         script:
+          - "find . -name '*.pp'" 
           - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
 #    - step:
 #        name: unit-profile
