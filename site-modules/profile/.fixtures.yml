@@ -7,4 +7,6 @@ fixtures:
     haproxy:
       repo: "puppetlabs-haproxy"
       ref: "4.1.0"
-    facter: "puppetlabs/facter"
+    facter:
+      scm: git
+      repo: "https://github.com/puppetlabs/facter"
