@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe 'profile::haproxy' do 
-
+describe 'profile::haproxy', :type => :class do 
 
     it 'should include ::haproxy' do
         is_expected.to contain__haproxy('') 
