@@ -15,12 +15,11 @@ pipelines:
         name: puppet-lint
         script:
           - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
-    - step:
-        name: unit-profile
-        script:
-          - "cd ./site-modules/profile && pdk test unit"
+#    - step:
+#        name: unit-profile
+#        script:
+#          - "cd ./site-modules/profile && pdk test unit"
     - step:
         name: unit-role
         script:
-          - "cd ./site-modules/role && pdk test unit"
-
+          - "cd ./site-modules/role && rake spec"
