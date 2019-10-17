@@ -31,7 +31,6 @@ class profile::webserver::base_webserver {
     cwd         => $repo_path,
     path        => '/usr/local/go/bin',
     environment => ['GOPATH=/vagrant', 'HOME=/root'],
-    refreshonly => true,  # should only run when Vcsrepo is updated, thus being idempotent
     require     => [
       File["${repo_path}/${bin_dir}"],
       Class['golang']
