@@ -3,6 +3,15 @@
 ---
 fixtures:
   forge_modules:
+    stdlib:
+      repo: "puppetlabs-stdlib"
+      ref: "6.0.0"
     haproxy:
       repo: "puppetlabs-haproxy"
       ref: "4.1.0"
+    apt:
+      repo: "puppetlabs-apt"
+      ref: "7.1.0"
+    registry:
+      repo: "puppetlabs-registry"
+      ref: "2.1.0"
