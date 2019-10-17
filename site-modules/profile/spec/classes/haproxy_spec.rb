@@ -7,11 +7,12 @@ describe 'profile::haproxy', :type => :class do
         :ipaddress => '127.0.0.1',
     } }
 
-    #it 'should include ::haproxy' do
-    #    is_expected.to contain_class('::haproxy') 
-    #end
+    it 'should include ::haproxy' do
+        #is_expected.to contain_class('::haproxy') 
+        is_expected.to contain__haproxy('')
+    end
 
     it { is_expected.to compile }
-    #it { is_expected.to compile.with_all_deps }
+    it { is_expected.to compile.with_all_deps }
 
 end
