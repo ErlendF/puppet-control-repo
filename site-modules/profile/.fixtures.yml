@@ -21,3 +21,16 @@ fixtures:
     archive:
       repo: "puppet-archive"
       ref: "3.2.1"
+    concat:
+      repo: "puppetlabs-concat"
+      ref: "6.1.0"
+    firewall:
+      repo: "puppetlabs-firewall"
+      ref: "2.1.0"
+    translate:
+      repo: "puppetlabs-translate"
+      ref: "2.0.0"
+    ntp:
+      repo: "puppetlabs-ntp"
+      ref: "8.0.0"
+
