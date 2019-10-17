@@ -44,7 +44,7 @@ class profile::webserver::base_webserver {
   }
 
   systemd::unit_file { 'web.service':
-    content => epp("${module_name}/${service_name}.service.epp", $service_config_hash),
+    content => epp("${module_name}/web.service.epp", $service_config_hash),
   }
   ~> service { $service_name:
     ensure    => 'running',
