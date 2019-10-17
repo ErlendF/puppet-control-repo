@@ -8,7 +8,7 @@ describe 'profile::haproxy', :type => :class do
     } }
 
     it 'should include ::haproxy' do
-        is_expected.to include_class('haproxy') 
+        is_expected.to contain_class('haproxy') 
         #is_expected.to contain_haproxy('')
     end
 
