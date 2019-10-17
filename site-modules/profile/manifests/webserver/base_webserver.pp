@@ -26,11 +26,14 @@ class profile::webserver::base_webserver {
     source   => $repo_url,
     require  => Package['git'],
   }
-  ~> exec { 'build':
+
+  exec { 'build':
     command     => "go build -i -o ${bin_dir} ./...",
     cwd         => $repo_path,
     path        => '/usr/local/go/bin',
     environment => ['GOPATH=/vagrant', 'HOME=/root'],
+    subscribe   => Vcsrepo[$repo_path],
+    refreshonly => true,
     require     => [
       File["${repo_path}/${bin_dir}"],
       Class['golang']
