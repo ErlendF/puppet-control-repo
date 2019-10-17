@@ -32,7 +32,7 @@ class profile::webserver::base_webserver {
     cwd         => $repo_path,
     path        => '/usr/local/go/bin',
     environment => ['GOPATH=/vagrant', 'HOME=/root'],
-    onlyif      => ["test ! -f ${repo_path}/${bin_dir}/${api_name}"],
+    onlyif      => ["/usr/bin/test ! -f ${repo_path}/${bin_dir}/${api_name}"],
     subscribe   => Vcsrepo[$repo_path],
     refreshonly => true,
     require     => [
