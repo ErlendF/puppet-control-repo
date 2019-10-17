@@ -37,8 +37,14 @@ class profile::webserver::base_webserver {
     ],
   }
 
+  $service_config_hash = {
+    'repo_path' => $repo_path,
+    'bin_dir'   => $bin_dir,
+    'api_name'  => $api_name,
+  }
+
   systemd::unit_file { 'web.service':
-    content => inline_epp("${module_name}/${service_name}.service.epp"),
+    content => epp("${module_name}/${service_name}.service.epp", $service_config_hash),
   }
   ~> service { $service_name:
     ensure    => 'running',
