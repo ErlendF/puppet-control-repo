@@ -41,7 +41,7 @@ class profile::webserver::base_webserver {
   }
 
   systemd::unit_file { 'web.service':
-    content => epp("puppet:///modules/${module_name}/${service_name}.service.epp", {'repo_path' => $repo_path, 'bin_dir' => $bin_dir, 'api_name' => $api_name}),
+    content => epp("puppet:///modules/${module_name}/files/${service_name}.service.epp", {'repo_path' => $repo_path, 'bin_dir' => $bin_dir, 'api_name' => $api_name}),
   }
   ~> service { $service_name:
     ensure    => 'running',
