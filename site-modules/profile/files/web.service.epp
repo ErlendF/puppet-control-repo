@@ -1,0 +1,22 @@
+<%- | String  $repo_path,
+      String  $bin_dir,
+      String  $api_name
+| -%>
+#
+# This file is managed by puppet!
+# Any manual changes will be overwritten.
+#
+[Unit]
+Description=my_go_website
+After=network.target auditd.service
+
+[Service]
+ExecStart=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name %>
+ExecReload=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name %>
+KillMode=process
+Restart=always
+RestartPreventExitStatus=255
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
