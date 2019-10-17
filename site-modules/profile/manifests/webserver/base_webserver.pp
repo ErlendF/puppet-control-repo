@@ -26,8 +26,7 @@ class profile::webserver::base_webserver {
     source   => $repo_url,
     require  => Package['git'],
   }
-
-  exec { 'build':
+  ~> exec { 'build':
     command     => "go build -i -o ${bin_dir} ./...",
     cwd         => $repo_path,
     path        => '/usr/local/go/bin',
@@ -37,7 +36,6 @@ class profile::webserver::base_webserver {
       File["${repo_path}/${bin_dir}"],
       Class['golang']
     ],
-    subscribe   => Vcsrepo[$repo_path],
   }
 
   systemd::unit_file { 'web.service':
