@@ -4,3 +4,6 @@
 fixtures:
   forge_modules:
     stdlib: "puppetlabs/stdlib"
+    haproxy:
+      repo: "puppetlabs-haproxy"
+      ref: "4.1.0"
