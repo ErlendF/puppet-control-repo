@@ -22,4 +22,5 @@ pipelines:
     - step:
         name: unit-role
         script:
-          - "cd ./site-modules/role && rake spec"
+          - "cd ./site-modules/role"
+          - "rake spec"
