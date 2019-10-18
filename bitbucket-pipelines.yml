@@ -10,23 +10,18 @@ pipelines:
     - step:
         name: syntax-check
         script:
-          - "find . -name '*.pp'"
           - "find . -name '*.pp' | xargs puppet parser validate"
     - step:
         name: puppet-lint
         script:
-          - "find . -name '*.pp'" 
           - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
-#    - step:
-#        name: unit-profile
-#        caches:
-#          - puppet/puppet-dev-tools
-#        script:
-#          - "cd ./site-modules/profile && pdk test unit"
-#    - step:
-#        name: unit-role
-#        caches:
-#          - puppet/puppet-dev-tools
-#        script:
-#          - "cd ./site-modules/role && pdk test unit"
-
+    - step:
+        name: unit-profile
+        script:
+          - "cd ./site-modules/profile"
+          - "rake spec --trace"
+    - step:
+        name: unit-role
+        script:
+          - "cd ./site-modules/role"
+          - "rake spec --trace"

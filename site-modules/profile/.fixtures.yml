@@ -1,0 +1,36 @@
+# This file can be used to install module dependencies for unit testing
+# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
+---
+fixtures:
+  forge_modules:
+    stdlib:
+      repo: "puppetlabs-stdlib"
+      ref: "6.0.0"
+    haproxy:
+      repo: "puppetlabs-haproxy"
+      ref: "4.1.0"
+    apt:
+      repo: "puppetlabs-apt"
+      ref: "7.1.0"
+    registry:
+      repo: "puppetlabs-registry"
+      ref: "2.1.0"
+    inifile:
+      repo: "puppetlabs-inifile"
+      ref: "3.1.0"
+    archive:
+      repo: "puppet-archive"
+      ref: "3.2.1"
+    concat:
+      repo: "puppetlabs-concat"
+      ref: "6.1.0"
+    firewall:
+      repo: "puppetlabs-firewall"
+      ref: "2.1.0"
+    translate:
+      repo: "puppetlabs-translate"
+      ref: "2.0.0"
+    ntp:
+      repo: "puppetlabs-ntp"
+      ref: "8.0.0"
+
