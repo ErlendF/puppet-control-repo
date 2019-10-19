@@ -1,12 +1,12 @@
 #
-# profile::webserver
+# profile::webserver::golang_api
 #
-class profile::webserver::webserver {
-  $repo_path = lookup('webserver::webserver::repo_path')
-  $bin_dir = lookup('webserver::webserver::bin_dir')
-  $api_name = lookup('webserver::webserver::api_name')
-  $repo_url = lookup('webserver::webserver::repo_url')
-  $service_name = lookup('webserver::webserver::service_name')
+class profile::webserver::golang_api {
+  $repo_path = lookup('webserver::golang_api::repo_path')
+  $bin_dir = lookup('webserver::golang_api::bin_dir')
+  $api_name = lookup('webserver::golang_api::api_name')
+  $repo_url = lookup('webserver::golang_api::repo_url')
+  $service_name = lookup('webserver::golang_api::service_name')
 
   class { 'golang':
     version   => '1.13.1',
