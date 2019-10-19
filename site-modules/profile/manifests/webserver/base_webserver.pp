@@ -16,14 +16,6 @@ class profile::webserver::base_webserver {
     ensure => latest,
   }
 
-  file { "${repo_path}/${bin_dir}":
-    ensure => 'directory',
-  }
-
-  file {"${repo_path}/${bin_dir}/hashfile":
-    ensure => 'file',
-  }
-
   vcsrepo { $repo_path:
     ensure   => latest,
     provider => git,
@@ -31,14 +23,24 @@ class profile::webserver::base_webserver {
     require  => Package['git'],
   }
 
+  file { "${repo_path}/${bin_dir}":
+    ensure  => 'directory',
+    require => Vcsrepo[$repo_path],
+  }
+
+  file { "${repo_path}/${bin_dir}/hashfile":
+    ensure  => 'file',
+    require => File["${repo_path}/${bin_dir}"],
+  }
+
   exec { 'build':
     command     => "go build -i -o ${bin_dir} ./... && git rev-parse HEAD > ${bin_dir}/hashfile",
     cwd         => $repo_path,
     path        => ['/usr/local/go/bin', '/usr/bin', '/bin'],
     environment => ['GOPATH=/vagrant', 'HOME=/root'],
-    onlyif      => "[ ! -f ${bin_dir}/${api_name} ] || [ $(git rev-parse HEAD) != $(cat ${bin_dir}/hashfile) ]",
+    onlyif      => "[ ! -f ${bin_dir}/${api_name} ] || [ \"$(git rev-parse HEAD)\" != \"$(cat ${bin_dir}/hashfile)\" ]",
     require     => [
-      File["${repo_path}/${bin_dir}"],
+      File["${repo_path}/${bin_dir}/hashfile"],
       Class['golang']
     ],
   }
