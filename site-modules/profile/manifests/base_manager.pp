@@ -7,6 +7,10 @@ class profile::base_manager {
   $ssh_key_erlend = lookup('base_manager::ubuntu_ssh_key_erlend')
   $ssh_key_aksel = lookup('base_manager::ubuntu_ssh_key_aksel')
 
+  $ssh_keys = lookup('base_manager::ubuntu_ssh_keys')
+
+  notify { "keys: ${ssh_keys}": }
+
   file { '/home/ubuntu/.ssh':
     ensure => 'directory',
     owner  => 'ubuntu',

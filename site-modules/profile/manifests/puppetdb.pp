@@ -23,7 +23,7 @@ class profile::puppetdb {
     manage_git          => true,
     manage_virtualenv   => true,
     default_environment => '*',
-    }
+  }
 
     # Configure vhost for puppetboard
   class { 'puppetboard::apache::vhost':
