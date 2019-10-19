@@ -32,7 +32,7 @@ class profile::base_manager {
     key    => $ssh_key_aksel,
   }
 
-  $puppetdb_host = lookup('base_puppetdb::puppetdb_host')
+  $puppetdb_host = lookup('puppetdb::puppetdb_host')
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
   class { 'puppetdb::master::config':
     manage_report_processor     => true,

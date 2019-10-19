@@ -1,11 +1,11 @@
 #
-# ::profile::base_postgresql
+# ::profile::postgresql
 # Sets up PostgreSQL on a server 
 #
-class profile::base_postgresql {
+class profile::postgresql {
 
-  $uname = lookup('base_postgresql::uname')
-  $pass  = lookup('base_postgresql::pass')
+  $uname = lookup('postgresql::uname')
+  $pass  = lookup('postgresql::pass')
 
   class { 'postgresql::server':
   }

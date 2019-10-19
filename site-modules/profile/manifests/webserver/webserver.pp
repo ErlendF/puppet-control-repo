@@ -1,12 +1,12 @@
 #
-# profile::base_webserver
+# profile::webserver
 #
-class profile::webserver::base_webserver {
-  $repo_path = lookup('webserver::base_webserver::repo_path')
-  $bin_dir = lookup('webserver::base_webserver::bin_dir')
-  $api_name = lookup('webserver::base_webserver::api_name')
-  $repo_url = lookup('webserver::base_webserver::repo_url')
-  $service_name = lookup('webserver::base_webserver::service_name')
+class profile::webserver::webserver {
+  $repo_path = lookup('webserver::webserver::repo_path')
+  $bin_dir = lookup('webserver::webserver::bin_dir')
+  $api_name = lookup('webserver::webserver::api_name')
+  $repo_url = lookup('webserver::webserver::repo_url')
+  $service_name = lookup('webserver::webserver::service_name')
 
   class { 'golang':
     version   => '1.13.1',
@@ -32,7 +32,11 @@ class profile::webserver::base_webserver {
     ensure  => 'file',
     require => File["${repo_path}/${bin_dir}"],
   }
-
+  #Exec['build'] only runs if:
+  # 1. the executable file is missing
+  # 2. the hashfile containing the commithash is missing
+  # 3. the commithash stored in the hashfile is not equal to latest
+  #Thus, the exec is idempotent, only running when a change has occured, or system has deviated from expected state
   exec { 'build':
     command     => "go build -i -o ${bin_dir} ./... && git rev-parse HEAD > ${bin_dir}/hashfile",
     cwd         => $repo_path,
