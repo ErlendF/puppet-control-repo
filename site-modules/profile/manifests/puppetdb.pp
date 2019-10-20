@@ -1,10 +1,10 @@
 #
-# profile::base_puppetdb
+# profile::puppetdb
 #
-class profile::base_puppetdb {
+class profile::puppetdb {
 
-  $puppetdb_host = lookup('base_puppetdb::puppetdb_host')
-  $postgres_host = lookup('base_puppetdb::postgres_host')
+  $puppetdb_host = lookup('puppetdb::puppetdb_host')
+  $postgres_host = lookup('puppetdb::postgres_host')
 
   # Here we install and configure PostgreSQL and the PuppetDB
   class { 'puppetdb':
@@ -23,7 +23,7 @@ class profile::base_puppetdb {
     manage_git          => true,
     manage_virtualenv   => true,
     default_environment => '*',
-    }
+  }
 
     # Configure vhost for puppetboard
   class { 'puppetboard::apache::vhost':
