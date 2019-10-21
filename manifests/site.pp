@@ -22,3 +22,7 @@ node 'godb.node.consul'{
   contain ::role::postgres_server
   contain ::role::loadbalancer
 }
+
+node 'loadbalancer.node.consul'{
+  contain ::role::loadbalancer2
+}
