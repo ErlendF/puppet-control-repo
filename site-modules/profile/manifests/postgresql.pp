@@ -25,4 +25,3 @@ class profile::postgresql {
   port   => 5432,
   }
 }
-

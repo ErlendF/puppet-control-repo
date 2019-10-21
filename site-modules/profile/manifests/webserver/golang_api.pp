@@ -12,6 +12,7 @@ class profile::webserver::golang_api {
   $api_port = lookup('webserver::golang_api::api_port', undef, undef, 80) #port is handled seperately from other api flags
   $service_name = lookup('webserver::golang_api::service_name', undef, undef, 'web')
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
+  $environment_file = lookup('webserver::golang_api::environemnt_file', undef, undef, '')
 
   class { 'golang':
     version   => '1.13.1',
