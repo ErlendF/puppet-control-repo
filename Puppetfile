@@ -47,6 +47,7 @@ mod 'puppetlabs-apache',      '5.1.0'
 mod 'puppetlabs-powershell',  '2.3.0'
 mod 'sensu-sensu',            '3.9.0'
 mod 'puppet-nginx',           '1.0.0'
+mod 'jgazeley-nagios',        '0.4.0'
 
 
 mod 'dns',
