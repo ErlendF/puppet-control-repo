@@ -4,7 +4,6 @@
 # and puppetboard/puppetdb
 #
 class profile::nginx {
-    include ::nginx
 
     class{'nginx':
     manage_repo    => true,
