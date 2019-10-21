@@ -3,8 +3,11 @@ require 'spec_helper'
 describe 'profile::haproxy', :type => :class do 
 
     let(:facts) { {
-        :osfamily  => 'debian',
-        :ipaddress => '127.0.0.1',
+        :kernel => "Linux",
+        :osfamily       => 'debian',
+        :os => { :family => 'debian' },
+        :ipaddress      => '127.0.0.1',
+        :architecture   => 'amd64',
     } }
 
     it 'should include ::haproxy' do
