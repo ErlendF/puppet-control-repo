@@ -14,5 +14,18 @@ class profile::postgresql {
     user     => $uname,
     password => postgresql_password($uname, $pass),
   }
+
+  consul::service { 'postgres':
+  checks => [
+    {
+      tcp      => 'localhost:5432',
+      interval => '10s',
+    }
+  ],
+  port   => 5432,
+  meta   => {
+    SLA => '1'
+  }
+}
 }
 
