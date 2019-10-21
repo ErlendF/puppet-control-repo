@@ -17,7 +17,7 @@ class profile::nginx {
 
     nginx::resource::server { 'consul.iacprosjekt.ntnu':
     listen_port => 80,
-    proxy       => 'http://consul.service.consul:8500/ui',
+    proxy       => 'http://consul.service.consul:8500/',
     }
 
 
