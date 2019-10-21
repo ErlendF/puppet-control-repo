@@ -1,6 +1,8 @@
 #
 # profile::webserver::golang_api
-#
+#  Pulls the golang REST API from the repo_url,
+#  builds the repo to a single executables,
+#  and manages the service running the application
 class profile::webserver::golang_api {
   $api_name = lookup('webserver::golang_api::api_name')
   $repo_url = lookup('webserver::golang_api::repo_url')
