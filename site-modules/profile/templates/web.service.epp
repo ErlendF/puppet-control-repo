@@ -2,7 +2,7 @@
       String  $bin_dir,
       String  $api_name,
       String  $api_flags,
-      Number  $api_port,
+      Integer  $api_port,
       String  $description,
 | -%>
 #

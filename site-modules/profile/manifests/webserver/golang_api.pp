@@ -61,15 +61,14 @@ class profile::webserver::golang_api {
     'description' => $description,
   }
 
-  systemd::unit_file { 'web.service':
+  systemd::unit_file { "${service_name}.service":
     content => epp("${module_name}/web.service.epp", $service_config_hash),
   }
   ~> service { $service_name:
     ensure    => 'running',
     subscribe => Exec['build'],
   }
-
-  consul::service { $service_name:
+  ~> consul::service { $service_name:
   checks => [
     {
       tcp      => "localhost:${api_port}",
