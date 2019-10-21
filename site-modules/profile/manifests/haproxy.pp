@@ -37,5 +37,15 @@ class profile::haproxy {
       ports             => '8080',
       options           => 'check',
     }
+
+    consul::service { 'haproxy':
+    checks => [
+      {
+        tcp      => 'localhost:80',
+        interval => '10s',
+      }
+    ],
+    port   => 80,
+  }
 }
 

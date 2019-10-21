@@ -1,18 +1,20 @@
 <%- | String  $repo_path,
       String  $bin_dir,
-      String  $api_name
+      String  $api_name,
+      String  $api_flags,
+      String  $decription,
 | -%>
 #
 # This file is managed by puppet!
 # Any manual changes will be overwritten.
 #
 [Unit]
-Description=my_go_website
+Description=<%= $description %>
 After=network.target auditd.service
 
 [Service]
-ExecStart=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name %> -vj
-ExecReload=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name %> -vj
+ExecStart=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name -%><% if $api_port != '' { -%> -p <%= $api_port -%><% } %> <%= $api_flags %>
+ExecReload=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name %><% if $api_port != '' { -%> -p <%= $api_port -%><% } %> <%= $api_flags %>
 KillMode=process
 Restart=always
 RestartPreventExitStatus=255

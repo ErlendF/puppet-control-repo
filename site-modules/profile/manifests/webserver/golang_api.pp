@@ -2,11 +2,14 @@
 # profile::webserver::golang_api
 #
 class profile::webserver::golang_api {
-  $repo_path = lookup('webserver::golang_api::repo_path')
-  $bin_dir = lookup('webserver::golang_api::bin_dir')
   $api_name = lookup('webserver::golang_api::api_name')
   $repo_url = lookup('webserver::golang_api::repo_url')
-  $service_name = lookup('webserver::golang_api::service_name')
+  $repo_path = lookup('webserver::golang_api::repo_path', undef, undef, '/root/webserverRepo')
+  $bin_dir = lookup('webserver::golang_api::bin_dir', undef, undef, 'web')
+  $api_flags = lookup('webserver::golang_api::api_flags', undef, undef, '')
+  $api_port = lookup('webserver::golang_api::api_port', undef, undef, 80) #port is handled seperately from other api flags
+  $service_name = lookup('webserver::golang_api::service_name', undef, undef, 'web')
+  $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
 
   class { 'golang':
     version   => '1.13.1',
@@ -50,9 +53,12 @@ class profile::webserver::golang_api {
   }
 
   $service_config_hash = {
-    'repo_path' => $repo_path,
-    'bin_dir'   => $bin_dir,
-    'api_name'  => $api_name,
+    'repo_path'   => $repo_path,
+    'bin_dir'     => $bin_dir,
+    'api_name'    => $api_name,
+    'api_flags'   => $api_flags,
+    'api_port'    => $api_port,
+    'description' => $description,
   }
 
   systemd::unit_file { 'web.service':
@@ -61,5 +67,15 @@ class profile::webserver::golang_api {
   ~> service { $service_name:
     ensure    => 'running',
     subscribe => Exec['build'],
+  }
+
+  consul::service { $service_name:
+  checks => [
+    {
+      tcp      => "localhost:${api_port}",
+      interval => '10s',
+    }
+  ],
+  port   => $api_port,
   }
 }

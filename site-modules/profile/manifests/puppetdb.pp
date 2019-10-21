@@ -25,9 +25,19 @@ class profile::puppetdb {
     default_environment => '*',
   }
 
-    # Configure vhost for puppetboard
+  # Configure vhost for puppetboard
   class { 'puppetboard::apache::vhost':
         vhost_name => $puppetdb_host,
+  }
+
+  consul::service { 'puppetdb':
+  checks => [
+    {
+      tcp      => 'localhost:5432',
+      interval => '10s',
+    }
+  ],
+  port   => 5432,
   }
 }
 
