@@ -33,4 +33,46 @@ fixtures:
     ntp:
       repo: "puppetlabs-ntp"
       ref: "8.0.0"
-
+    consul:
+      repo: "KyleAnderson-consul"
+      ref: "5.1.0"
+    systemd:
+      repo: "camptocamp-systemd"
+      ref: "2.6.0"
+    hiera_http:
+      repo: "crayfishx-hiera_http"
+      ref: "3.4.0"
+    reboot:
+      repo: "puppetlabs-reboot"
+      ref: "2.2.0"
+    timezone:
+      repo: "saz-timezone"
+      ref: "3.4.0"
+    debconf:
+      repo: "stm-debconf"
+      ref: "2.3.0"
+    netplan:
+      repo: "zehweh-netplan"
+      ref: "0.1.9"
+    golang:
+      repo: "dcoxall-golang"
+      ref: "1.2.0"
+    puppetdb:
+      repo: "puppetlabs-puppetdb"
+      ref: "7.4.0"
+    postgresql:
+      repo: "puppetlabs-postgresql"
+      ref: "6.2.0"
+    puppetboard:
+      repo: "puppet-puppetboard"
+      ref: "5.0.0"
+    python:
+      repo: "puppet-python"
+      ref: "3.0.1"
+    apache:
+      repo: "puppetlabs-apache"
+      ref: "5.1.0"
+    sensu:
+      repo: "sensu-sensu"
+      ref: "3.9.0"
+    
