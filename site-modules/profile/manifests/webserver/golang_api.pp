@@ -12,7 +12,7 @@ class profile::webserver::golang_api {
   $api_port = lookup('webserver::golang_api::api_port', undef, undef, 80) #port is handled seperately from other api flags
   $service_name = lookup('webserver::golang_api::service_name', undef, undef, 'web')
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
-  $environment_file = lookup('webserver::golang_api::environemnt_file', undef, undef, '')
+  $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
 
   class { 'golang':
     version   => '1.13.1',
@@ -56,12 +56,13 @@ class profile::webserver::golang_api {
   }
 
   $service_config_hash = {
-    'repo_path'   => $repo_path,
-    'bin_dir'     => $bin_dir,
-    'api_name'    => $api_name,
-    'api_flags'   => $api_flags,
-    'api_port'    => $api_port,
-    'description' => $description,
+    'repo_path'        => $repo_path,
+    'bin_dir'          => $bin_dir,
+    'api_name'         => $api_name,
+    'api_flags'        => $api_flags,
+    'api_port'         => $api_port,
+    'description'      => $description,
+    'environment_file' => $environment_file,
   }
 
   systemd::unit_file { "${service_name}.service":
