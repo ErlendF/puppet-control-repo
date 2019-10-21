@@ -33,7 +33,7 @@ class profile::puppetdb {
   consul::service { 'puppetdb':
   checks => [
     {
-      tcp      => 'localhost:5432',
+      tcp      => 'localhost:8081',
       interval => '10s',
     }
   ],
