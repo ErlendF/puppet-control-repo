@@ -15,7 +15,7 @@ Description=<%= $description %>
 After=network.target auditd.service
 
 [Service]
-<% if $environment_file != '' { -%>EnvironmentFile=<%= $environment_file -%><% } %>
+<% if $environment_file != '' { -%>EnvironmentFile=<%= $environment_file %><% } -%>
 ExecStart=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name -%><% if $api_port != '' { %> -p <%= $api_port -%><% } %> <%= $api_flags %>
 ExecReload=<%= $repo_path -%>/<%= $bin_dir -%>/<%= $api_name %><% if $api_port != '' { %> -p <%= $api_port -%><% } %> <%= $api_flags %>
 KillMode=process
