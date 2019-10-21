@@ -20,6 +20,11 @@ class profile::nginx {
     proxy       => 'http://consul.service.consul:8500/',
     }
 
+    nginx::resource::server { 'iacprosjekt.ntnu':
+    listen_port => 80,
+    proxy       => 'http://web.service.consul/',
+    }
+
 
     consul::service { 'nginx':
     checks => [
