@@ -14,7 +14,7 @@ class profile::haproxy {
     }
     haproxy::balancermember { 'puppetserver':
       listening_service => 'forwarder',
-      ipaddresses       => 'puppetdb.node.consul',
+      ipaddresses       => 'puppetdb.service.consul',
       ports             => '5000',
       options           => 'check',
     }

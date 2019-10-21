@@ -2,7 +2,8 @@
       String  $bin_dir,
       String  $api_name,
       String  $api_flags,
-      String  $decription,
+      Number  $api_port,
+      String  $description,
 | -%>
 #
 # This file is managed by puppet!
