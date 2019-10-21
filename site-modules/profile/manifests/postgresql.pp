@@ -23,9 +23,6 @@ class profile::postgresql {
     }
   ],
   port   => 5432,
-  meta   => {
-    SLA => '1'
   }
-}
 }
 
