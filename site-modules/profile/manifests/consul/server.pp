@@ -6,7 +6,7 @@ class profile::consul::server {
   package { 'unzip':
     ensure => latest,
   }
-
+  # needs 3 server nodes to establish consensus
   class { '::consul':
     version     => '1.6.0',
     config_hash => {

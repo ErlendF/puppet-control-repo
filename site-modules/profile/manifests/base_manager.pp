@@ -27,6 +27,7 @@ class profile::base_manager {
 
   $puppetdb_host = lookup('puppetdb::puppetdb_host')
     # Tell Puppet master to use PuppetDB and hostname of the PuppetDB node
+    # Allow puppetdb_soft_write_failure since consul consensus will not be up and running on first run of puppet
   class { 'puppetdb::master::config':
     manage_report_processor     => true,
     enable_reports              => true,
