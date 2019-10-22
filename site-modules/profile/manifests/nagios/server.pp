@@ -2,7 +2,7 @@
 #
 class profile::nagios::server {
 
-  class {'::nagios ':
+  class {'nagios ':
     server   => true,
     nrpe     => true,
     firewall => true,

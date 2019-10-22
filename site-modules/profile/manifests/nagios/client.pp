@@ -2,7 +2,7 @@
 #
 class profile::nagios::client {
 
-  class {'::nagios::client ':
+  class {'nagios::client ':
     basic_checks => true,
     nrpe         => true,
     firewall     => true,
