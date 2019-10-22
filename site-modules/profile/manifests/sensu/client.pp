@@ -1,5 +1,4 @@
-# profile::nagios::client
-#
+# profile::sensu::agent
 class profile::sensu::agent {
 
   class { 'sensu::agent':

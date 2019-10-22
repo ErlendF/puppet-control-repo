@@ -1,4 +1,4 @@
-# profile::nagios::server
+# profile::sensu::backend
 #
 class profile::sensu::backend {
   class { 'sensu::backend':
