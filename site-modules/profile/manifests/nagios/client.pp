@@ -2,10 +2,14 @@
 #
 class profile::nagios::client {
 
-  class {'nagios::client ':
-    basic_checks => true,
-    nrpe         => true,
-    firewall     => true,
-    aliases      => 'nagios.iacprosjekt.ntnu',
+  class {'nagios::client':
+    nagios_service         => 'generic_service',
+    monitoring_environment => $::environment
+  }
+
+  class {'nagios::nrpe::config':
+    server                 => '192.168.1.1',
+    nagios_service         => 'generic_service',
+    monitoring_environment => $::environment
   }
 }
