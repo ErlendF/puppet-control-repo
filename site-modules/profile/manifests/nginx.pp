@@ -15,6 +15,11 @@ class profile::nginx {
     proxy       => 'http://puppetdb.service.consul:5000',
     }
 
+    nginx::resource::server { 'sensu.iacprosjekt.ntnu':
+    listen_port => 80,
+    proxy       => 'https://sensuback.service.consul:3000',
+    }
+
     nginx::resource::server { 'consul.iacprosjekt.ntnu':
     listen_port => 80,
     proxy       => 'http://consul.service.consul:8500/',
