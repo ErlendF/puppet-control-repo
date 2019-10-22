@@ -12,4 +12,13 @@ class profile::sensu::backend {
     interval      => 60,
     subscriptions => ['linux'],
   }
+  consul::service { 'sensuback':
+  checks => [
+    {
+      tcp      => 'localhost:8081',
+      interval => '10s',
+    }
+  ],
+  port   => 8081,
+  }
 }
