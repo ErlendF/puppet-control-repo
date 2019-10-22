@@ -48,6 +48,9 @@ mod 'puppetlabs-powershell',  '2.3.0'
 mod 'sensu-sensu',            '3.9.0'
 mod 'puppet-nginx',           '1.0.0'
 mod 'concrete-nagios',        '2.5.0'
+mod 'richardc-datacat',       '0.6.2'
+mod 'leinaddm-htpasswd',      '0.0.3'
+mod 'stahnma-epel',           '1.3.1'
 
 
 mod 'dns',
