@@ -51,6 +51,7 @@ mod 'concrete-nagios',        '2.5.0'
 mod 'richardc-datacat',       '0.6.2'
 mod 'leinaddm-htpasswd',      '0.0.3'
 mod 'stahnma-epel',           '1.3.1'
+mod 'jamtur01-httpauth',      '0.0.5'
 
 
 mod 'dns',
