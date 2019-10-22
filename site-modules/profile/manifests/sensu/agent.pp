@@ -6,4 +6,9 @@ class profile::sensu::agent {
       'subscriptions' => ['linux', 'apache-servers'],
     },
   }
+  class { 'sensu::plugins':
+    plugins => {
+    'disk-checks' => { 'version' => 'latest' },
+    },
+  }
 }
