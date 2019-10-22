@@ -6,5 +6,5 @@ class role::web_server {
   include ::profile::dns::client
   include ::profile::consul::client
   include ::profile::webserver::golang_api
-  include ::profile::nagios::client
+  include ::profile::sensu::agent
 }
