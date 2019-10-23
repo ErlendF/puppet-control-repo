@@ -6,4 +6,5 @@ class role::mon_server {
   contain ::profile::dns::client
   contain ::profile::consul::client
   contain ::profile::sensu::backend
+  contain ::profile::sensu::agent
 }
