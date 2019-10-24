@@ -3,7 +3,7 @@
 #
 class profile::dns::client {
 
-  $dir_ip = lookup( 'Address', undef, undef, '1.1.1.1' )
+  $man_ip = lookup( 'manger_ip', undef, undef, '1.1.1.1' )
 
   case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
@@ -14,7 +14,7 @@ class profile::dns::client {
             'dhcp4'       => true,
             'nameservers' => {
               'search'    => ['node.consul'],
-              'addresses' => [ $dir_ip ],
+              'addresses' => [ $man_ip ],
             }
           }
         },
@@ -23,6 +23,5 @@ class profile::dns::client {
     }
     default: { notify { 'Which OS? WTF???': } }
   }
-
 }
 

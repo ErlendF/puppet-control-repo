@@ -18,6 +18,5 @@ class profile::consul::client {
     },
     require     => Package['unzip'],
   }
-
 }
 

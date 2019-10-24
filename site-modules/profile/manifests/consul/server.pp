@@ -22,6 +22,5 @@ class profile::consul::server {
     },
     require     => Package['unzip'],
   }
-
 }
 

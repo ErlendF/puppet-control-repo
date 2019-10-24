@@ -14,7 +14,7 @@ hierarchy:
   - name: "Consul"
     lookup_key: hiera_http
     uris:
-      - "http://localhost:8500/v1/catalog/node/dir"
+      - "http://localhost:8500/v1/catalog/node/manager"
     options:
       dig_key: Node.__KEY__
       output: json
