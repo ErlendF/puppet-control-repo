@@ -18,10 +18,10 @@ postgresql::uname: go
 webserver::golang_api::repo_path: /root/webserverRepo
 webserver::golang_api::bin_dir: web
 webserver::golang_api::api_name: test
-webserver::golang_api::api_flags: -v serve
+webserver::golang_api::api_flags: -v
 webserver::golang_api::api_port: 80
 webserver::golang_api::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.git
 webserver::golang_api::service_name: web
 webserver::golang_api::description: My Golang REST API
 webserver::golang_api::environment_file: .env
-webserver::golang_api::environment_variables: ["DB_URL=postgres:postgres@postgres.service.consul:5432/postgres?sslmode=disable", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
+webserver::golang_api::environment_variables: ["DB_URL=go:land@postgres.service.consul:5432/postgres?sslmode=disable", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
