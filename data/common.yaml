@@ -23,3 +23,7 @@ webserver::golang_api::api_port: 80
 webserver::golang_api::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.git
 webserver::golang_api::service_name: web
 webserver::golang_api::description: My Golang REST API
+webserver::golang_api::environment_variables:
+  - DB_URL: postgres:postgres@postgres.service.consul:5432/postgres?sslmode=disable
+  - DB_MAXOPEN: 20
+  - DB_MAXIDLE: 15

@@ -13,6 +13,7 @@ class profile::webserver::golang_api {
   $service_name = lookup('webserver::golang_api::service_name', undef, undef, 'web')
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
+  $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, {})
 
   class { 'golang':
     version   => '1.13.1',
@@ -38,6 +39,17 @@ class profile::webserver::golang_api {
     ensure  => 'file',
     require => File["${repo_path}/${bin_dir}"],
   }
+  if $environment_file != '' {
+    $env_vars = {
+      'envvars' => $environment_variables,
+    }
+
+    File { "${repo_path}/${bin_dir}/${environment_file}":
+      ensure  => file,
+      content => epp("${module_name}/env.epp", $env_vars),
+      require => File["${repo_path}/${bin_dir}"],
+    }
+  }
   #Exec['build'] only runs if:
   # 1. the executable file is missing
   # 2. the hashfile containing the commithash is missing
@@ -62,7 +74,7 @@ class profile::webserver::golang_api {
     'api_flags'        => $api_flags,
     'api_port'         => $api_port,
     'description'      => $description,
-    'environment_file' => $environment_file,
+    'environment_file' => "${repo_path}/${bin_dir}/${environment_file}",
   }
 
   systemd::unit_file { "${service_name}.service":
