@@ -4,7 +4,7 @@ class profile::sensu::backend {
   class { 'sensu::backend':
     password     => 'supersecret',
     old_password => 'P@ssw0rd!',
-    namespaces   => ['linux', 'apache-servers'],
+    namespaces   => 'linux',
   }
   include sensu::agent
     sensu_check { 'check-cpu':
