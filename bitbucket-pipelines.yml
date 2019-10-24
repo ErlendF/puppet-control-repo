@@ -19,9 +19,11 @@ pipelines:
         name: unit-profile
         script:
           - "cd ./site-modules/profile"
+          - "bundle install"
           - "rake spec --trace"
     - step:
         name: unit-role
         script:
           - "cd ./site-modules/role"
+          - "bundle install"
           - "rake spec --trace"
