@@ -12,7 +12,7 @@ class profile::sensu::backend {
     interval      => 60,
     subscriptions => ['linux'],
   }
-}
+
 
 
 
