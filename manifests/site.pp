@@ -19,9 +19,9 @@ node 'puppetdb.node.consul'{
   include ::role::puppetdbpuppetboard
 }
 node 'godb.node.consul'{
-  contain ::role::postgres_server
+  include ::role::postgres_server
 }
 
 node 'loadbalancer.node.consul'{
-  contain ::role::loadbalancer2
+  include ::role::loadbalancer
 }

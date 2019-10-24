@@ -18,7 +18,7 @@ postgresql::uname: go
 webserver::golang_api::repo_path: /root/webserverRepo
 webserver::golang_api::bin_dir: web
 webserver::golang_api::api_name: test
-webserver::golang_api::api_flags: -v
+webserver::golang_api::api_flags: -v serve
 webserver::golang_api::api_port: 80
 webserver::golang_api::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.git
 webserver::golang_api::service_name: web
