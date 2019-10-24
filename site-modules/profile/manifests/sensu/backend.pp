@@ -16,8 +16,6 @@ class profile::sensu::backend {
   }
 
 
-
-
   consul::service { 'sensuback':
   checks => [
     {
