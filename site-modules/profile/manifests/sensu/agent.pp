@@ -6,6 +6,14 @@ class profile::sensu::agent {
       'subscriptions' => ['linux', 'apache-servers'],
     },
   }
+
+  sensu_check { 'check-cpu':
+    ensure        => 'present',
+    command       => 'check-cpu.sh -w 75 -c 90',
+    interval      => 60,
+    subscriptions => ['linux'],
+  }
+
   package { 'sensu-plugins-disk-checks':
     ensure   => '0.0.1',
     provider => sensu_gem,
