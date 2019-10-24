@@ -13,7 +13,7 @@ class profile::webserver::golang_api {
   $service_name = lookup('webserver::golang_api::service_name', undef, undef, 'web')
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
-  $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, {})
+  $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, '')
 
   notify { "Env vars: ${environment_variables}":}
 
