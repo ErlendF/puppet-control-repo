@@ -17,17 +17,25 @@ pipelines:
           - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
     - step:
         name: unit-profile
+        caches:
+            - fixtures
+            - bundler
         script:
-          - "cd ./site-modules/profile"
-          - "rake validate"
           - "gem install bundler"
-          - "bundle install"
+          - "cd ./site-modules/profile"
+          - "bundle install --path ~/vendor/bundle"
+          - "rake validate"
           - "rake spec --trace"
     - step:
         name: unit-role
         script:
-          - "cd ./site-modules/role"
-          - "rake validate"
           - "gem install bundler"
-          - "bundle install"
+          - "cd ./site-modules/role"
+          - "bundle install --path ~/vendor/bundle"
+          - "rake validate"
           - "rake spec --trace"
+
+definitions:
+    caches:
+        bundler: ~/vendor/bundle
+        fixtures: site-modules/profile/spec/fixtures
