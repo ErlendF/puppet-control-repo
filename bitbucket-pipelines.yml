@@ -3,39 +3,24 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
+
 image: puppet/puppet-dev-tools
 
 pipelines:
   default:
     - step:
-        name: syntax-check
+        name: syntax-check and puppet-lint
         script:
           - "find . -name '*.pp' | xargs puppet parser validate"
-    - step:
-        name: puppet-lint
-        script:
           - "find . -name '*.pp' | xargs puppet-lint --error-level all --fail-on-warnings"
+          
     - step:
         name: unit-profile
-        caches:
-            - fixtures
-            - bundler
         script:
-          - "gem install bundler"
           - "cd ./site-modules/profile"
-          - "bundle install --path ~/vendor/bundle"
           - "rake validate"
-          - "rake spec --trace"
-    - step:
-        name: unit-role
-        script:
           - "gem install bundler"
-          - "cd ./site-modules/role"
-          - "bundle install --path ~/vendor/bundle"
-          - "rake validate"
+          - "bundle install"
           - "rake spec --trace"
-
-definitions:
-    caches:
-        bundler: ~/vendor/bundle
-        fixtures: site-modules/profile/spec/fixtures
+          
+          
