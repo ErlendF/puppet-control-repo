@@ -42,13 +42,11 @@ class profile::webserver::golang_api {
     require => File["${repo_path}/${bin_dir}"],
   }
   if $environment_file != '' {
-    $env_vars = {
-      'envvars' => $environment_variables,
-    }
+    $envvars = $environment_variables
 
     File { "${repo_path}/${bin_dir}/${environment_file}":
       ensure  => file,
-      content => epp("${module_name}/env.epp", $env_vars),
+      content => epp("${module_name}/env.epp", $envvars),
       require => File["${repo_path}/${bin_dir}"],
     }
   }

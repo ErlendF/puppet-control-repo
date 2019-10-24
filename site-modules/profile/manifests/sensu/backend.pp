@@ -12,11 +12,7 @@ class profile::sensu::backend {
     interval      => 60,
     subscriptions => ['linux'],
   }
-  class { 'sensu::plugins':
-    extensions => {
-      'graphite' => { 'version' => 'latest' },
-    },
-  }
+}
 
 
 
