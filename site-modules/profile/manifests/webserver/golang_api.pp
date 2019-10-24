@@ -13,7 +13,7 @@ class profile::webserver::golang_api {
   $service_name = lookup('webserver::golang_api::service_name', undef, undef, 'web')
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
-  $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, '')
+  $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, [])
 
   notify { "Env vars: ${environment_variables}": }
 
@@ -42,11 +42,13 @@ class profile::webserver::golang_api {
     require => File["${repo_path}/${bin_dir}"],
   }
   if $environment_file != '' {
-    $envvars = $environment_variables
+    $env_vars = {
+      'envvars' => $environment_variables,
+    }
 
     File { "${repo_path}/${bin_dir}/${environment_file}":
       ensure  => file,
-      content => epp("${module_name}/env.epp", $envvars),
+      content => epp("${module_name}/env.epp", $env_vars),
       require => File["${repo_path}/${bin_dir}"],
     }
   }

@@ -15,7 +15,7 @@ class profile::sensu::agent {
   }
 
   package { 'sensu-plugins-disk-checks':
-    ensure   => '0.0.1',
+    ensure   => 'latest',
     provider => sensu_gem,
   }
   class { 'sensu::plugins':

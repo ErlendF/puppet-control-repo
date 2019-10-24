@@ -7,4 +7,5 @@ class role::loadbalancer {
   include ::profile::consul::client
   include ::profile::nginx
   Class['::profile::consul::client'] -> Class['::profile::nginx']
+  include ::profile::sensu::agent
 }
