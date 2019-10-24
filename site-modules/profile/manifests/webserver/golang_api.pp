@@ -15,6 +15,8 @@ class profile::webserver::golang_api {
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
   $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, {})
 
+  notify { "Env vars: ${environment_variables}":}
+
   class { 'golang':
     version   => '1.13.1',
   }

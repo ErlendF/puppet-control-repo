@@ -18,6 +18,9 @@ fi
 # pushes new / current keys in to hiera 
 # needs  :postrun: ['/bin/bash', '/etc/puppetlabs/code/environments/production/new_keys_and_passwds.bash'] in r10k.yaml
 echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> /etc/puppetlabs/code/environments/production/data/common.yaml
+
+
+# pushes manager ip to hiera. used for dns
 echo "manger_ip: $(ifconfig | grep inet | awk '{print $2}' | head -1)" >> /etc/puppetlabs/code/environments/production/data/common.yaml
 # Define a timestamp function
 timestamp() {
