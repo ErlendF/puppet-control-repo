@@ -46,10 +46,10 @@ class profile::webserver::golang_api {
       'envvars' => $environment_variables,
     }
 
-    File { "${repo_path}/${bin_dir}/${environment_file}":
+    File { "${repo_path}/${environment_file}":
       ensure  => file,
       content => epp("${module_name}/env.epp", $env_vars),
-      require => File["${repo_path}/${bin_dir}"],
+      require => Vcsrepo[$repo_path],
     }
   }
   #Exec['build'] only runs if:
@@ -76,7 +76,7 @@ class profile::webserver::golang_api {
     'api_flags'        => $api_flags,
     'api_port'         => $api_port,
     'description'      => $description,
-    'environment_file' => "${repo_path}/${bin_dir}/${environment_file}",
+    'environment_file' => "${repo_path}/${environment_file}",
   }
 
   systemd::unit_file { "${service_name}.service":
