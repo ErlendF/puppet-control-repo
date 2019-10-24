@@ -1,3 +1,5 @@
+require 'rspec-puppet'
+require 'rspec-puppet-facts'
 RSpec.configure do |c|
   c.mock_with :rspec
 end
