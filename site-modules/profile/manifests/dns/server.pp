@@ -23,7 +23,7 @@ class profile::dns::server {
 
   dnsmasq::conf { 'local-dns':
     ensure => present,
-    source => "puppet:///${module_name}/local-dns",
+    source => "puppet:///modules/${module_name}/local-dns",
   }
 }
 
