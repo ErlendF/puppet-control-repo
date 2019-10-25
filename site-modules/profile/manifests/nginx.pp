@@ -25,28 +25,9 @@ class profile::nginx {
     proxy       => 'http://consul.service.consul:8500/',
     }
 
-    nginx::resource::upstream { 'web_api':
-      members => {
-        'web.service.consul:80' => {
-          server => 'http://web.service.consul/',
-          port   => 80,
-          weight => 1,
-          },
-        'lin0.node.consul:80'   => {
-          server => 'http://lin0.node.consul/',
-          port   => 80,
-          weight => 2,
-          },
-        'lin1.node.consul:80'   => {
-          server => 'http://lin1.node.consul/',
-          port   => 80,
-          weight => 2,
-          },
-        },
-      }
-
     nginx::resource::server { 'iacprosjekt.ntnu':
-      proxy => 'http://web_api',
+    listen_port => 80,
+    proxy       => 'http://web.service.consul/',
     }
 
 
