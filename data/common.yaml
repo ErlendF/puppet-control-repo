@@ -24,4 +24,4 @@ webserver::golang_api::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.gi
 webserver::golang_api::service_name: web
 webserver::golang_api::description: My Golang REST API
 webserver::golang_api::environment_file: .env
-webserver::golang_api::environment_variables: ["DB_URL=goland://go:land@postgres.service.consul:5432/postgres?sslmode=disable", "DB_MAXOPEN=20", "DB_MAXIDLE=15"] #address hardcoded, change when dns works
+webserver::golang_api::environment_variables: ["DB_URL=goland://go:land@postgres.service.consul:5432/", "DB_MAXOPEN=20", "DB_MAXIDLE=15"] #address hardcoded, change when dns works
