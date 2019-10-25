@@ -54,10 +54,9 @@ mod 'stahnma-epel',           '1.3.1'
 mod 'jamtur01-httpauth',      '0.0.5'
 mod 'puppet-grafana',         '6.0.0'
 
+mod 'saz-dnsmasq', '1.4.0'
+mod 'saz-resolv_conf', '4.1.0'
 
-mod 'dns',
-  git:    'https://github.com/ppouliot/puppet-dns',
-  commit: 'ec588ed90bf64f97403170c7261944f86ccc16a3'
 
 # r10k
 mod 'puppet-r10k',            '7.0.0'

@@ -7,18 +7,8 @@ class profile::dns::client {
 
   case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
-      class { 'netplan':
-        config_file   => '/etc/netplan/50-cloud-init.yaml',
-        ethernets     => {
-          'ens3' => {
-            'dhcp4'       => true,
-            'nameservers' => {
-              'search'    => ['node.consul'],
-              'addresses' => [ $man_ip ],
-            }
-          }
-        },
-        netplan_apply => true,
+      class { 'resolv_conf':
+        nameservers => [$man_ip],
       }
     }
     default: { notify { 'Which OS? WTF???': } }
