@@ -79,8 +79,8 @@ class profile::webserver::golang_api {
     'environment_file' => "${repo_path}/${environment_file}",
   }
 
-  postgresql_conn_validator { 'pg_conn':
-    host        => 'postgres.service.consul',
+  postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
+    host        => '10.212.139.43',
     db_username => 'go',
     db_password => 'land',
     db_name     => 'goland',
