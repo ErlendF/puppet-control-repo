@@ -80,7 +80,7 @@ class profile::webserver::golang_api {
   }
 
   postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
-    host        => '10.212.139.43',
+    host        => 'postgres.service.consul',
     db_username => 'go',
     db_password => 'land',
     db_name     => 'goland',
