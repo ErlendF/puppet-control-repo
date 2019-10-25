@@ -61,7 +61,7 @@ class profile::webserver::golang_api {
     command     => "go build -i -o ${bin_dir} ./... && git rev-parse HEAD > ${bin_dir}/hashfile",
     cwd         => $repo_path,
     path        => ['/usr/local/go/bin', '/usr/bin', '/bin'],
-    environment => ['GOPATH=/vagrant', 'HOME=/root'],
+    environment => ['GOPATH=/go', 'HOME=/root'],
     onlyif      => "[ ! -f ${bin_dir}/${api_name} ] || [ \"$(git rev-parse HEAD)\" != \"$(cat ${bin_dir}/hashfile)\" ]",
     require     => [
       File["${repo_path}/${bin_dir}/hashfile"],
