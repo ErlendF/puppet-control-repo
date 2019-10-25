@@ -79,6 +79,8 @@ class profile::webserver::golang_api {
     'environment_file' => "${repo_path}/${environment_file}",
   }
 
+  #  conn validator does not work properly commented out for now
+
   #postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
   #  host        => 'postgres.service.consul',
   #  db_username => 'go',
@@ -94,12 +96,12 @@ class profile::webserver::golang_api {
     #require   => Postgresql_conn_validator['pg_conn']
   }
   ~> consul::service { $service_name:
-  checks => [
-    {
-      tcp      => "localhost:${api_port}",
-      interval => '10s',
-    }
-  ],
+  #checks => [
+  #  {
+  #    tcp      => "localhost:${api_port}",
+  #    interval => '10s',
+  #  }
+  #],
   port   => $api_port,
   }
 }
