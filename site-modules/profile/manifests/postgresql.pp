@@ -8,6 +8,8 @@ class profile::postgresql {
   $pass  = lookup('postgresql::pass')
 
   class { 'postgresql::server':
+    listen_addresses        => '*',
+    ip_mask_allow_all_users => '192.168.0.0/1'
   }
 
   postgresql::server::db { 'goland':
