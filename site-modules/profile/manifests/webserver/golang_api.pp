@@ -91,7 +91,7 @@ class profile::webserver::golang_api {
   ~> service { $service_name:
     ensure    => 'running',
     subscribe => Exec['build'],
-    require   => Postgresql_conn_validator['pg_conn']
+    #require   => Postgresql_conn_validator['pg_conn']
   }
   ~> consul::service { $service_name:
   checks => [
