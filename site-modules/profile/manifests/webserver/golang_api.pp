@@ -79,12 +79,12 @@ class profile::webserver::golang_api {
     'environment_file' => "${repo_path}/${environment_file}",
   }
 
-  postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
-    host        => 'postgres.service.consul',
-    db_username => 'go',
-    db_password => 'land',
-    db_name     => 'goland',
-  }
+  #postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
+  #  host        => 'postgres.service.consul',
+  #  db_username => 'go',
+  #  db_password => 'land',
+  #  db_name     => 'goland',
+  #}
   systemd::unit_file { "${service_name}.service":
     content => epp("${module_name}/web.service.epp", $service_config_hash),
   }
