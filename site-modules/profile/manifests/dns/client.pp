@@ -3,7 +3,7 @@
 #
 class profile::dns::client {
 
-  $man_ip = lookup( 'manger_ip', undef, undef, '1.1.1.1' )
+  $man_ip = lookup( 'mangaer_ip', undef, undef, '1.1.1.1' )
 
   case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
