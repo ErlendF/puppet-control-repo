@@ -8,7 +8,7 @@ class profile::dns::client {
   case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
       class { 'resolv_conf':
-        nameservers => [$man_ip],
+        nameservers => [$man_ip, '1.1.1.1'],
       }
     }
     default: { notify { 'Which OS? WTF???': } }
