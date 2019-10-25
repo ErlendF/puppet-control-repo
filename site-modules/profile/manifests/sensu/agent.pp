@@ -1,6 +1,11 @@
 # profile::sensu::agent
 class profile::sensu::agent {
 
+  class { 'statsd':
+    backends      => ['statsd-influxdb-backend'],
+    influxdb_host => 'localhost'
+  }
+
   class { 'sensu::agent':
     backends    => ['sensuback.service.consul:8081'],
     config_hash => {
