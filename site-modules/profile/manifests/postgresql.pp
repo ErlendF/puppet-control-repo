@@ -22,7 +22,7 @@ class profile::postgresql {
     user        => 'go',
     address     => '0.0.0.0/0', #for testing purposes
     # address     => '192.168.0.0/16',
-    # auth_method => 'md5',
+    auth_method => 'md5',
 }
 
   consul::service { 'postgres':

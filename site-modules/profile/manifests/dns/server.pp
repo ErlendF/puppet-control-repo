@@ -14,8 +14,8 @@ class profile::dns::server {
   }
 
   dns::zone { 'consul':
-    zone_type       => forward,
-    forward_policy  => only,
+    zone_type       => 'forward',
+    forward_policy  => 'only',
     allow_forwarder => [ '127.0.0.1 port 8600' ],
   }
 }
