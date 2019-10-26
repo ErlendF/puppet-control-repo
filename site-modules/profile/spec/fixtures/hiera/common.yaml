@@ -1,4 +1,5 @@
 ---
+base_linux::root_ssh_key: AAAAB3NzaC1yc2EAAAADAQABAAABAQDMmX73B6UiuVbFY5+0Ewj9LeIqk6tUo+cgc1u7gNXCIN4MHIL3YgDyeUfnPdnwuN4YcttrN8I/lnuKIJWJ/7L6rKaIBKEFbDIXGZRBneycGaSTNTHrX3cAA8yv7U2HgEuuJ1xgimeRDIx+q0cAzM+sIVsLXzTs1yfhjQ2NQwVKBr6hXYDFgJW4I+Q5xYBKDtqjS9rRFQrjdAEGkIczEtWlWSp5hpwwIcDv4vTeIV4kIIdgwgFeo9OGa/6iRGbvVpMhHJk30Q9PqwYalLxPMbcOUNUFRXrjWe3UD3ceEeXsOXSlsDARIVp6gxjyeHLC8RvqtmHFH+4+ee3dETrR6/Zn
 base_linux::linux_sw_pkg:
           - 'htop'
           - 'sysstat'
