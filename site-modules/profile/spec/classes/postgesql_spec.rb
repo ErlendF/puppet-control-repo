@@ -20,11 +20,6 @@ describe 'profile::postgresql', :type => :class do
         let(:hiera_config) { 'spec/fixtures/hiera/hiera.yaml' }
         hiera = Hiera.new({:config => 'spec/fixtures/hiera/hiera.yaml'})
 
-        #let(:hiera_data) {{
-        #    :'ssh_keys'
-        #}}
-
-
         it { is_expected.to compile }
 
 
