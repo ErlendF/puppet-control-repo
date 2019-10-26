@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'profile::postgresql', :type => :class do
+describe 'profile::postgresql' do
 
     test_on = {
         :hardwaremodels => ['x86_64'],

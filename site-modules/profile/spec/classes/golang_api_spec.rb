@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'profile::webserver::golang_api', :type => :class do
+describe 'profile::webserver::golang_api' do
 
     test_on = {
         :hardwaremodels => ['x86_64'],
