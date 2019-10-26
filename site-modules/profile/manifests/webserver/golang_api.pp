@@ -16,7 +16,7 @@ class profile::webserver::golang_api {
   $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, [])
 
   class { 'golang':
-    version   => '1.13.1',
+    version   => '1.13.3',
   }
 
   package { 'git':
