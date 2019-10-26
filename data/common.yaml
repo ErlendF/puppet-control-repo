@@ -24,4 +24,4 @@ webserver::golang_api::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.gi
 webserver::golang_api::service_name: web
 webserver::golang_api::description: My Golang REST API
 webserver::golang_api::environment_file: .env
-webserver::golang_api::environment_variables: ["DB_HOST=postgres.service.consul", "DB_PORT=5432", "DB_USER=go", "DB_PASSWORD=land", "DB_NAME=goland", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
+webserver::golang_api::environment_variables: ["DB_HOST=postgres.service.consul", "DB_PORT=5432", "DB_USER=go", "DB_PASSWORD=land", "DB_NAME=goland", "SQL_DIR=/root/webserverRepo/sql", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
