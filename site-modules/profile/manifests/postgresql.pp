@@ -6,24 +6,25 @@ class profile::postgresql {
 
   $uname = lookup('postgresql::uname')
   $pass  = lookup('postgresql::pass')
+  $access_address = lookup('postgresql::access_address', undef, undef, '0.0.0.0/0')
+  $dbname = lookup('postgresql::db_name', undef, undef, 'postgres')
 
   class { 'postgresql::server':
     listen_addresses        => '*',
     ip_mask_allow_all_users => '192.168.0.0/1'
   }
 
-  postgresql::server::db { 'goland':
+  postgresql::server::db { $dbname:
     user     => $uname,
     password => postgresql_password($uname, $pass),
   }
 
   postgresql::server::pg_hba_rule { 'allow golang network to access app database':
-    description => 'Open up postgresql for access from 192.168.0.0/16',
+    description => "Open up postgresql for access from ${access_address}",
     type        => 'host',
-    database    => 'postgres',
-    user        => 'go',
-    address     => '0.0.0.0/0', #for testing purposes
-    # address     => '192.168.0.0/16',
+    database    => $dbname,
+    user        => $uname,
+    address     => $access_address,
     auth_method => 'md5',
 }
 
