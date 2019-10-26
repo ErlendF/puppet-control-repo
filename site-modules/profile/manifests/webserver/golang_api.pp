@@ -14,8 +14,10 @@ class profile::webserver::golang_api {
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
   $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, [])
-
-  notify { "Env vars: ${environment_variables}": }
+  $db_uname = lookup('postgresql::uname')
+  $db_pass  = lookup('postgresql::pass')
+  $db_address = lookup('postgresql::address')
+  $db_name = lookup('postgresql::db_name', undef, undef, 'postgres')
 
   class { 'golang':
     version   => '1.13.1',
@@ -81,19 +83,19 @@ class profile::webserver::golang_api {
 
   #  conn validator does not work properly commented out for now
 
-  #postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
-  #  host        => 'postgres.service.consul',
-  #  db_username => 'go',
-  #  db_password => 'land',
-  #  db_name     => 'goland',
-  #}
+  postgresql_conn_validator { 'pg_conn':
+    host        => $db_address,
+    db_username => $db_uname,
+    db_password => $db_pass,
+    db_name     => $db_name,
+  }
   systemd::unit_file { "${service_name}.service":
     content => epp("${module_name}/web.service.epp", $service_config_hash),
   }
   ~> service { $service_name:
     ensure    => 'running',
     subscribe => Exec['build'],
-    #require   => Postgresql_conn_validator['pg_conn']
+    require   => Postgresql_conn_validator['pg_conn']
   }
   ~> consul::service { $service_name:
   #checks => [
