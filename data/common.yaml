@@ -28,3 +28,9 @@ webserver::golang_api::service_name: web
 webserver::golang_api::description: My Golang REST API
 webserver::golang_api::environment_file: .env
 webserver::golang_api::environment_variables: ["DB_HOST=postgres.service.consul", "DB_PORT=5432", "DB_USER=go", "DB_PASSWORD=land", "DB_NAME=goland", "SQL_DIR=/root/webserverRepo/sql", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
+
+nginx::servers:
+  - puppetdb.iacprosjekt.ntnu: http://puppetdb.service.consul:5000
+  - sensu.iacprosjekt.ntnu: https://sensuback.service.consul:3000
+  - consul.iacprosjekt.ntnu: http://consul.service.consul:8500/
+  - iacprosjekt.ntnu: http://web.service.consul/
