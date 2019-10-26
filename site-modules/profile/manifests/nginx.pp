@@ -1,7 +1,5 @@
 #
-# ::profile::haproxy
-# Sets up the HAproxy service for loadbalancing the web-service 
-# and puppetboard/puppetdb
+# ::profile::nginx
 #
 class profile::nginx {
   $servers = lookup('nginx::servers')
@@ -11,7 +9,7 @@ class profile::nginx {
   package_source => 'nginx-stable'
   }
 
-  #adds each key from the ssh_keys array to autorized_keys
+  #adds each server declared in hiera
   $servers.each |Hash $server_hash| {
     $server_hash.each |String $name, String $proxy| {
       nginx::resource::server { $name:
