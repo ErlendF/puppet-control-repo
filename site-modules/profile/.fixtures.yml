@@ -75,4 +75,34 @@ fixtures:
     sensu:
       repo: "sensu-sensu"
       ref: "3.9.0"
+    nginx:
+      repo: "puppet-nginx"
+      ref: "1.0.0"
+    nagios:
+      repo: "concrete-nagios"
+      ref: "2.5.0"
+    datacat:
+      repo: "richardc-datacat"
+      ref: "0.6.2"
+    htpasswd:
+      repo: "leinaddm-htpasswd"
+      ref: "0.0.3"
+    epel:
+      repo: "stahnma-epel"
+      ref: "1.3.1"
+    httpauth:
+      repo: "jamtur01-httpauth"
+      ref: "0.0.5"
+    grafana:
+      repo: "puppet-grafana"
+      ref: "6.0.0"
+    statsd:
+      repo: "jdowning-statsd"
+      ref: "3.1.0"
+    dnsmasq:
+      repo: "saz-dnsmasq"
+      ref: "1.4.0"
+    resolv_conf:
+      repo: "saz-resolv_conf"
+      ref: "4.1.0"
     

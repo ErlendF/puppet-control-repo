@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'profile::postgresql', :type => :class do
+describe 'profile::nginx', :type => :class do
 
     test_on = {
         :hardwaremodels => ['x86_64'],
