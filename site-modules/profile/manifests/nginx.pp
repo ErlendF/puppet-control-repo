@@ -5,8 +5,8 @@ class profile::nginx {
   $servers = lookup('nginx::servers')
 
   class{'nginx':
-  manage_repo    => true,
-  package_source => 'nginx-stable'
+    manage_repo    => true,
+    package_source => 'nginx-stable'
   }
 
   #adds each server declared in hiera
