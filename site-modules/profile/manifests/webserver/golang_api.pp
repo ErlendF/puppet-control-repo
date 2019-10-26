@@ -15,10 +15,8 @@ class profile::webserver::golang_api {
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
   $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, [])
 
-  notify { "Env vars: ${environment_variables}": }
-
   class { 'golang':
-    version   => '1.13.1',
+    version   => '1.13.3',
   }
 
   package { 'git':
@@ -79,21 +77,12 @@ class profile::webserver::golang_api {
     'environment_file' => "${repo_path}/${environment_file}",
   }
 
-  #  conn validator does not work properly commented out for now
-
-  #postgresql_conn_validator { 'pg_conn':  #hardcoded for testing purposes
-  #  host        => 'postgres.service.consul',
-  #  db_username => 'go',
-  #  db_password => 'land',
-  #  db_name     => 'goland',
-  #}
   systemd::unit_file { "${service_name}.service":
     content => epp("${module_name}/web.service.epp", $service_config_hash),
   }
   ~> service { $service_name:
     ensure    => 'running',
-    subscribe => Exec['build'],
-    #require   => Postgresql_conn_validator['pg_conn']
+    subscribe => Exec['build']
   }
   ~> consul::service { $service_name:
   #checks => [
