@@ -1,7 +1,10 @@
 require 'rspec-puppet'
 require 'rspec-puppet-facts'
+require 'hiera'
+include RspecPuppetFacts
 RSpec.configure do |c|
   c.mock_with :rspec
+  c.hiera_config = 'spec/fuxtures/hiera/hiera.yaml'
 end
 require 'puppetlabs_spec_helper/module_spec_helper'
 
