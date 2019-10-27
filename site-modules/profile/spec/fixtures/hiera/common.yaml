@@ -5,6 +5,8 @@ base_linux::linux_sw_pkg:
           - 'sysstat'
           - 'vim'
 
+manager_ip: 127.0.0.1
+
 base_manager::ubuntu_ssh_keys:
   - johan@manjaro: AAAAB3NzaC1yc2EAAAADAQABAAABAQDMmX73B6UiuVbFY5+0Ewj9LeIqk6tUo+cgc1u7gNXCIN4MHIL3YgDyeUfnPdnwuN4YcttrN8I/lnuKIJWJ/7L6rKaIBKEFbDIXGZRBneycGaSTNTHrX3cAA8yv7U2HgEuuJ1xgimeRDIx+q0cAzM+sIVsLXzTs1yfhjQ2NQwVKBr6hXYDFgJW4I+Q5xYBKDtqjS9rRFQrjdAEGkIczEtWlWSp5hpwwIcDv4vTeIV4kIIdgwgFeo9OGa/6iRGbvVpMhHJk30Q9PqwYalLxPMbcOUNUFRXrjWe3UD3ceEeXsOXSlsDARIVp6gxjyeHLC8RvqtmHFH+4+ee3dETrR6/Zn
   - erlend@ubuntututu: AAAAB3NzaC1yc2EAAAADAQABAAABAQD2xtnYJdvox3q0CsJGo4ciNnyW9Tt3w6OuisFIgjx6ralkf04Gyyy5pISq8zAM8/XqsAPb7wQGsgu5phVtQzBruyJHXkPxEHjvzxDZwQihtpe4CSdP/aLJ5Akbve+ScfEtmYetAzHJrkA7K59z4TbhKxeAdHM88urTkp1zXRlqs+yQdeAuVubfm+/o9/fHGQ3RHXYKgMTu3tcDvNL5z5+UMahQzNIP/IqeiKR9GuiqvyyD5EazqRHzoYhj/3chT8ku+kWEFNoYBLytj+QnqV86asgOc4xNZnaWqaRox90RZYoFFU9GJ8scYNYW5XPmexKi9Fp9jzfMS9259ZTEsfJL
