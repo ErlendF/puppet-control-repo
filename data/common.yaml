@@ -31,6 +31,5 @@ webserver::golang_api::environment_variables: ["DB_HOST=postgres.service.consul"
 
 nginx::servers:
   - puppetdb.iacprosjekt.ntnu: http://puppetdb.service.consul:5000
-  - sensu.iacprosjekt.ntnu: https://sensuback.service.consul:3000
   - consul.iacprosjekt.ntnu: http://consul.service.consul:8500/
   - iacprosjekt.ntnu: http://web.service.consul/
