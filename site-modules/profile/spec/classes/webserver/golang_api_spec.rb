@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'profile::postgresql' do
+describe 'profile::webserver::golang_api' do
 
     test_on = {
         :hardwaremodels => ['x86_64'],
@@ -22,7 +22,5 @@ describe 'profile::postgresql' do
 
         it { is_expected.to compile }
 
-
     end
-
 end

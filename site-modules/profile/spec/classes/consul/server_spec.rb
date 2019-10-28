@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'profile::postgresql' do
+describe 'profile::consul::server' do
 
     test_on = {
         :hardwaremodels => ['x86_64'],
@@ -13,12 +13,16 @@ describe 'profile::postgresql' do
     }
     
     on_supported_os(test_on).each do |os, facts|
+
         let(:facts) do
             facts
+            {'serverip' => '127.0.0.1', 'architecture' => 'x86_64', 'os' => 
+                {'family' => 'Linux', 'name' => 'Ubuntu'}, 'kernel' => 'linux', 'path' => './'}
         end
 
         let(:hiera_config) { 'spec/fixtures/hiera/hiera.yaml' }
         hiera = Hiera.new({:config => 'spec/fixtures/hiera/hiera.yaml'})
+        
 
         it { is_expected.to compile }
 
