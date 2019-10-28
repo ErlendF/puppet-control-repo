@@ -21,7 +21,7 @@ echo "base_linux::root_ssh_key: $(cut -d ' ' -f 2 /root/.ssh/id_rsa.pub)" >> /et
 
 
 # pushes manager ip to hiera. used for dns
-echo "manager_ip: $(ifconfig | grep inet | awk '{print $2}' | head -1)" >> /etc/puppetlabs/code/environments/production/data/common.yaml
+echo "manager_ip: $(ifconfig | grep ens3 -A 1 | grep inet | awk '{print $2}')" >> /etc/puppetlabs/code/environments/production/data/common.yaml
 # Define a timestamp function
 timestamp() {
   date +"%Y-%m-%d_%H-%M-%S"
