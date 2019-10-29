@@ -19,27 +19,6 @@ class profile::nginx {
     }
   }
 
-    # nginx::resource::server { 'puppetdb.iacprosjekt.ntnu':
-    # listen_port => 80,
-    # proxy       => 'http://puppetdb.service.consul:5000',
-    # }
-
-    # nginx::resource::server { 'sensu.iacprosjekt.ntnu':
-    # listen_port => 80,
-    # proxy       => 'https://sensuback.service.consul:3000',
-    # }
-
-    # nginx::resource::server { 'consul.iacprosjekt.ntnu':
-    # listen_port => 80,
-    # proxy       => 'http://consul.service.consul:8500/',
-    # }
-
-    # nginx::resource::server { 'iacprosjekt.ntnu':
-    # listen_port => 80,
-    # proxy       => 'http://web.service.consul/',
-    # }
-
-
   consul::service { 'nginx':
     checks => [
       {

@@ -8,5 +8,5 @@ class role::postgres_server {
   include ::profile::consul::client
   include ::profile::postgresql
   #Class['::profile::consul::client'] -> Class['::profile::postgresql'] # for future use (when consul data is needed )
-  include ::profile::sensu::agent
+  #include ::profile::sensu::agent
 }
