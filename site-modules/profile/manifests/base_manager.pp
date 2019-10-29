@@ -12,6 +12,11 @@ class profile::base_manager {
     mode   => '0700',
   }
 
+  package { 'toml-rb':
+    ensure   => present,
+    provider => puppetserver_gem,
+  }
+
   #adds each key from the ssh_keys array to autorized_keys
   $ssh_keys.each |Hash $key_hash| {
     $key_hash.each |String $name, String $key| {
