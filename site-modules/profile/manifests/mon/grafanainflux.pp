@@ -50,7 +50,14 @@ class profile::mon::grafanainflux (
     is_default       => true,
   }
 
-  grafana_dashboard { 'telegraf':
+  http_conn_validator { 'grafana-conn-validator' :
+    host     => 'localhost',
+    port     => '8080',
+    use_ssl  => true,
+    test_url => '/public/img/grafana_icon.svg',
+    require  => Class['grafana'],
+  }
+  -> grafana_dashboard { 'telegraf':
     grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
