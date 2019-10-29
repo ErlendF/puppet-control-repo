@@ -6,6 +6,8 @@ hosts = %w(
   database01.iac
   frontend00.iac
   frontend01.iac
+  monitor01.iac
+  puppetdb01.iac
 )
 
 task :spec => 'spec:all'
