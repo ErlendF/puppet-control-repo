@@ -3,6 +3,6 @@ class profile::mon::params (
   String $grafana_password = lookup('mon::params::grafana_password'),
   String $influxdb_database = 'testdb',
   String $influxdb_user = 'testuser',
-  String $grafana_url = 'http://mon.node.consul:8080',
+  String $grafana_url = 'https://mon.node.consul:8080',
   String $grafana_user = 'testuser',
 ) {}

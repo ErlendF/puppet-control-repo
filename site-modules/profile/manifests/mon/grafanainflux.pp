@@ -46,7 +46,7 @@ class profile::mon::grafanainflux (
     user             => $influx_username,
     password         => $influx_password,
     database         => $influx_database,
-    access_mode      => 'proxy',
+    access_mode      => 'direct',
     is_default       => true,
   }
 
