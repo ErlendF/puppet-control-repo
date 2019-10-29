@@ -39,4 +39,4 @@ mon::telegraf::database: "bolt"
 mon::telegraf::username: "bolt"
 
 mon::params::influxdb_password: "hunter2"
-mon::params::grafana_password: "boltIsAwesome"
+mon::params::grafana_password: "hunter2"
