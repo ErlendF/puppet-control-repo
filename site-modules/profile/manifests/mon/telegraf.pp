@@ -4,8 +4,8 @@ class profile::mon::telegraf (
   String $username = $profile::mon::params::influxdb_user,
 ) inherits profile::mon::params {
 
-  $influx_url = "http://${influx_host}:8086"
-  $influx_host = ""
+  $influx_url = 'http://influx.service.consul:8086'
+
   class { 'telegraf':
     hostname => $facts['hostname'],
     outputs  => {
