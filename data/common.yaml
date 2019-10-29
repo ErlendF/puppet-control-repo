@@ -35,8 +35,8 @@ nginx::servers:
   - iacprosjekt.ntnu: http://web.service.consul/
 
 
-mon::telegraf::database: "bolt"
-mon::telegraf::username: "bolt"
+mon::telegraf::database: "testdb"
+mon::telegraf::username: "testuser"
 
 mon::params::influxdb_password: "hunter2"
 mon::params::grafana_password: "hunter2"

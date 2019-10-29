@@ -11,6 +11,7 @@ class profile::mon::grafanainflux (
   String $influx_username = $profile::mon::params::influxdb_user,
 
 ) inherits profile::mon::params {
+
   class { 'grafana':
     cfg => {
       app_mode => 'production',
@@ -36,7 +37,7 @@ class profile::mon::grafanainflux (
   }
 
   grafana_datasource { 'influxdb':
-    require          => Influx_database['bolt'],
+    require          => Influx_database['testdb'],
     grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,

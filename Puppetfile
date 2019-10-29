@@ -55,7 +55,7 @@ mod 'jamtur01-httpauth',      '0.0.5'
 mod 'puppet-grafana',         '6.0.0'
 mod 'jdowning-statsd',        '3.1.0'
 mod 'puppetlabs-puppetserver_gem', '1.1.1'
-mod 'quadriq-influxdb', '0.2.1'
+mod 'vpgrp-influxdb', '1.3.2'
 mod 'puppet-telegraf', '2.1.0'
 
 mod 'saz-dnsmasq', '1.4.0'
