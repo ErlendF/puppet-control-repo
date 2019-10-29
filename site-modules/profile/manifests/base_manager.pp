@@ -34,4 +34,30 @@ class profile::base_manager {
     puppetdb_server             => $puppetdb_host,
     puppetdb_soft_write_failure => true,
   }
+
+  file {
+    default:
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+    ;
+    '/etc/puppetlabs/puppet/eyaml':
+      ensure => directory,
+      mode   => '0755',
+    ;
+    '/etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem':
+      group  => 'puppet',
+      mode   => '0440',
+      source => "puppet:///modules/${module_name}/private_key.pkcs7.pem",
+    ;
+    '/etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem':
+      mode   => '0444',
+      source => "puppet:///modules/${module_name}/eyaml_public_key.pkcs7.pem",
+    ;
+  }
+
+  package { 'hiera-eyaml puppetserver_gem':
+    name     => 'hiera-eyaml',
+    provider => 'puppetserver_gem',
+  }
 }

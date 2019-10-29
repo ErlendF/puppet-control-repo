@@ -54,6 +54,7 @@ mod 'stahnma-epel',           '1.3.1'
 mod 'jamtur01-httpauth',      '0.0.5'
 mod 'puppet-grafana',         '6.0.0'
 mod 'jdowning-statsd',        '3.1.0'
+mod 'puppetlabs-puppetserver_gem', '1.1.1'
 
 mod 'saz-dnsmasq', '1.4.0'
 mod 'saz-resolv_conf', '4.1.0'
