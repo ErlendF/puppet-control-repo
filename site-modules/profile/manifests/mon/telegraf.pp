@@ -10,8 +10,7 @@ class profile::mon::telegraf (
     ensure   => present,
     provider => puppetserver_gem,
   }
-
-  class { 'telegraf':
+  -> class { 'telegraf':
     hostname => $facts['hostname'],
     outputs  => {
         'influxdb' => [

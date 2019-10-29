@@ -37,10 +37,7 @@ class profile::mon::grafanainflux (
     admin_username => $influx_username,
     admin_password => $influx_password
   }
-
-
-  grafana_datasource { 'influxdb':
-    require          => influxdb::database['testdb'],
+  -> grafana_datasource { 'influxdb':
     grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
