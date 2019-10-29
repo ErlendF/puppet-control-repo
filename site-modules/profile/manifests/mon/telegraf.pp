@@ -6,7 +6,7 @@ class profile::mon::telegraf (
 
   $influx_url = 'http://influx.service.consul:8086'
 
-  package { 'toml':
+  package { 'toml-rb':
     ensure   => present,
     provider => puppetserver_gem,
   }
