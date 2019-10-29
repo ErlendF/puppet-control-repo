@@ -23,6 +23,11 @@ class profile::base_linux {
     ensure => latest,
   }
 
+  package { 'toml-rb':
+    ensure   => present,
+    provider => puppetserver_gem,
+  }
+
 # root@manager should be able to ssh without password to all
 
   file { '/root/.ssh':
