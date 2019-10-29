@@ -6,4 +6,5 @@ class role::puppetdbpuppetboard {
   include ::profile::dns::client
   include ::profile::consul::server
   include ::profile::puppetdb
+  include ::profile::mon::telegraf
 }
