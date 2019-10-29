@@ -47,7 +47,7 @@ class profile::base_manager {
     owner   => root,
     group   => puppet,
     mode    => '0444',
-    source  => "puppet:///modules/${module_name}/eyaml_public_key.pkcs7.pem",
+    source  => "puppet:///modules/${module_name}/public_key.pkcs7.pem",
     require => File['/etc/puppetlabs/puppet/eyaml'],
   }
 
