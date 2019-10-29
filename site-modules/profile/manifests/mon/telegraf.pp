@@ -6,6 +6,11 @@ class profile::mon::telegraf (
 
   $influx_url = 'http://influx.service.consul:8086'
 
+  package { 'toml':
+    ensure   => present,
+    provider => puppetserver_gem,
+  }
+
   class { 'telegraf':
     hostname => $facts['hostname'],
     outputs  => {

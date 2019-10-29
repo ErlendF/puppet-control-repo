@@ -40,7 +40,7 @@ class profile::mon::grafanainflux (
 
 
   grafana_datasource { 'influxdb':
-    require          => Influx_database['testdb'],
+    require          => influxdb::database['testdb'],
     grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
@@ -53,14 +53,8 @@ class profile::mon::grafanainflux (
     is_default       => true,
   }
 
-  http_conn_validator { 'grafana-conn-validator' :
-    host     => 'mon.node.consul',
-    port     => '8080',
-    use_ssl  => true,
-    test_url => '/public/img/grafana_icon.svg',
-    require  => Class['grafana'],
-  }
-  -> grafana_dashboard { 'telegraf':
+
+  grafana_dashboard { 'telegraf':
     grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
