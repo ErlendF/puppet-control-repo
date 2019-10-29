@@ -10,11 +10,8 @@ describe command('/usr/local/go/bin/go version') do
     its(:stdout) { should match 'go version go1.13.3' }
 end
 
+# custom service for application
 describe service('web') do
-    it { should be_running }
-end
-
-describe service('consul') do
     it { should be_running }
 end
 
