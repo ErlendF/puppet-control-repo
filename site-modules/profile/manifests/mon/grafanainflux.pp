@@ -39,7 +39,7 @@ class profile::mon::grafanainflux (
   }
 
   grafana_datasource { 'influxdb':
-    grafana_url      =>'http://localhost:8080',
+    grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
     type             => 'influxdb',
@@ -67,5 +67,15 @@ class profile::mon::grafanainflux (
       }
     ],
     port   => 8086,
+  }
+
+  consul::service { 'grafana':
+    checks => [
+      {
+        tcp      => 'localhost:8080',
+        interval => '10s',
+      }
+    ],
+    port   => 8080,
   }
 }

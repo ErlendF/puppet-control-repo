@@ -33,6 +33,7 @@ nginx::servers:
   - puppetdb.iacprosjekt.ntnu: http://puppetdb.service.consul:5000
   - consul.iacprosjekt.ntnu: http://consul.service.consul:8500/
   - iacprosjekt.ntnu: http://web.service.consul/
+  - grafana.iacprosjekt.ntnu: http://grafana.service.consul:8080/
 
 
 mon::telegraf::database: "testdb"
