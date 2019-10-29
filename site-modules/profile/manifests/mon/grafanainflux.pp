@@ -24,7 +24,7 @@ class profile::mon::grafanainflux (
       },
       database => {
         type => 'sqlite3',
-        host => 'mon.node.consul:3306',
+        host => '127.0.0.1:3306',
         name => 'grafananana',
       },
     },
@@ -53,7 +53,7 @@ class profile::mon::grafanainflux (
 
 
   grafana_dashboard { 'telegraf':
-    grafana_url      => 'http://localhost:3000',
+    grafana_url      => 'http://localhost:8080',
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
     content          => template("${module_name}/telegraf.json")
