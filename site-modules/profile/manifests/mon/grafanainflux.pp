@@ -24,7 +24,7 @@ class profile::mon::grafanainflux (
       },
       database => {
         type => 'sqlite3',
-        host => '127.0.0.1:3306',
+        host => 'mon.node.consul:3306',
         name => 'grafananana',
       },
     },
@@ -42,7 +42,7 @@ class profile::mon::grafanainflux (
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
     type             => 'influxdb',
-    url              => 'http://localhost:8086',
+    url              => 'http://mon.node.consul:8086',
     user             => $influx_username,
     password         => $influx_password,
     database         => $influx_database,
@@ -51,7 +51,7 @@ class profile::mon::grafanainflux (
   }
 
   http_conn_validator { 'grafana-conn-validator' :
-    host     => 'localhost',
+    host     => 'mon.node.consul',
     port     => '8080',
     use_ssl  => true,
     test_url => '/public/img/grafana_icon.svg',
