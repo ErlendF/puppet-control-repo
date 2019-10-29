@@ -31,10 +31,13 @@ class profile::mon::grafanainflux (
   }
 
   class {'influxdb': }
-  influx_database{$influx_database:
-    superuser => $influx_username,
-    superpass => $influx_password
+
+  influxdb::database{$influx_database:
+    ensure         => present,
+    admin_username => $influx_username,
+    admin_password => $influx_password
   }
+
 
   grafana_datasource { 'influxdb':
     require          => Influx_database['testdb'],

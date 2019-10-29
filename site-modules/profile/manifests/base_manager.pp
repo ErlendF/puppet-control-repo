@@ -60,8 +60,6 @@ class profile::base_manager {
     require => File['/etc/puppetlabs/puppet/eyaml'],
   }
 
-
-
   package { 'hiera-eyaml puppetserver_gem':
     name     => 'hiera-eyaml',
     provider => 'puppetserver_gem',
