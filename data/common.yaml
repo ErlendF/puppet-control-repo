@@ -33,3 +33,10 @@ nginx::servers:
   - puppetdb.iacprosjekt.ntnu: http://puppetdb.service.consul:5000
   - consul.iacprosjekt.ntnu: http://consul.service.consul:8500/
   - iacprosjekt.ntnu: http://web.service.consul/
+
+
+mon::telegraf::database: "bolt"
+mon::telegraf::username: "bolt"
+
+mon::params::influxdb_password: "hunter2"
+mon::params::grafana_password: "boltIsAwesome"
