@@ -38,18 +38,18 @@ class profile::mon::grafanainflux (
     admin_password => $influx_password
   }
 
-  grafana_datasource { 'influxdb':
-    grafana_url      => $grafana_url,
-    grafana_user     => $grafana_user,
-    grafana_password => $grafana_password,
-    type             => 'influxdb',
-    url              => 'http://mon.node.consul:8086',
-    user             => $influx_username,
-    password         => $influx_password,
-    database         => $influx_database,
-    access_mode      => 'proxy',
-    is_default       => true,
-  }
+  ##grafana_datasource { 'influxdb':
+  ##  grafana_url      => $grafana_url,
+  ##  grafana_user     => $grafana_user,
+  ##  grafana_password => $grafana_password,
+  ##  type             => 'influxdb',
+  ##  url              => 'http://mon.node.consul:8086',
+  ##  user             => $influx_username,
+  ##  password         => $influx_password,
+  ##  database         => $influx_database,
+  ##  access_mode      => 'proxy',
+  ##  is_default       => true,
+  ##}
 
 
   grafana_dashboard { 'telegraf':
