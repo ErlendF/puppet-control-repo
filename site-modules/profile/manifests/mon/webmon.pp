@@ -2,11 +2,17 @@
 #profile::mon::webmon
 #
 class profile::mon::webmon () inherits profile::mon::telegraf {
-  $nginx_servers = lookup('nginx::servers')
+  $servers = lookup('nginx::servers')
   # $servers_arr = Array[String]
-  # $nginx_servers.each |Hash $server| {
+  # $servers.each |Hash $server| {
   #   $server.each |String $name, String $address| {
   #     servers_arr << $address
+  #   }
+  # }
+
+  # $servers.each |Hash $server_hash| {
+  #   $server_hash.map |String $name, String $proxy| {
+  #     $proxy
   #   }
   # }
 
@@ -17,12 +23,12 @@ class profile::mon::webmon () inherits profile::mon::telegraf {
         'method'           => 'GET',
         'follow_redirects' => true,
         'urls'             => [
-        $nginx_servers['puppetdb.iacprosjekt.ntnu'],
-        $nginx_servers['consul.iacprosjekt.ntnu'],
-        $nginx_servers['iacprosjekt.ntnu'],
-        $nginx_servers['grafana.iacprosjekt.ntnu']
-      ],
-    },
+          'http://puppetdb.service.consul:5000',
+          'http://consul.service.consul:8500/',
+          'http://web.service.consul/',
+          'http://grafana.service.consul:8080/'
+        ],
+      },
     ]
   }
 }
