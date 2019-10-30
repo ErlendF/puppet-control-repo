@@ -12,6 +12,11 @@ class profile::base_manager {
     mode   => '0700',
   }
 
+  package { 'toml-rb':
+    ensure   => present,
+    provider => puppetserver_gem,
+  }
+
   #adds each key from the ssh_keys array to autorized_keys
   $ssh_keys.each |Hash $key_hash| {
     $key_hash.each |String $name, String $key| {
@@ -34,4 +39,35 @@ class profile::base_manager {
     puppetdb_server             => $puppetdb_host,
     puppetdb_soft_write_failure => true,
   }
+
+  file { '/etc/puppetlabs/puppet/eyaml':
+    ensure => directory,
+    mode   => '0755',
+    owner  => root,
+    group  => puppet,
+  }
+
+  file { '/etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem':
+    ensure  => file,
+    owner   => root,
+    group   => puppet,
+    mode    => '0444',
+    source  => "puppet:///modules/${module_name}/public_key.pkcs7.pem",
+    require => File['/etc/puppetlabs/puppet/eyaml'],
+  }
+
+  file { '/etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem':
+    ensure  => file,
+    owner   => root,
+    group   => puppet,
+    mode    => '0440',
+    source  => "puppet:///modules/${module_name}/private_key.pkcs7.pem",
+    require => File['/etc/puppetlabs/puppet/eyaml'],
+  }
+
+  package { 'hiera-eyaml puppetserver_gem':
+    name     => 'hiera-eyaml',
+    provider => 'puppetserver_gem',
+  }
+
 }

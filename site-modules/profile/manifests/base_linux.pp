@@ -23,6 +23,7 @@ class profile::base_linux {
     ensure => latest,
   }
 
+
 # root@manager should be able to ssh without password to all
 
   file { '/root/.ssh':
@@ -37,6 +38,5 @@ class profile::base_linux {
     key     => $root_ssh_key,
     require => File['/root/.ssh'],
   }
-
 }
 

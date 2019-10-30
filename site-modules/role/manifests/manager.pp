@@ -7,4 +7,5 @@ class role::manager {
   include ::profile::dns::client
   include ::profile::dns::server
   include ::profile::consul::server
+  include ::profile::mon::telegraf
 }

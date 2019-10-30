@@ -1,4 +1,3 @@
-#
 # profile::webserver::golang_api
 #  Pulls the golang REST API from the repo_url,
 #  builds the repo to a single executables,
@@ -85,12 +84,12 @@ class profile::webserver::golang_api {
     subscribe => Exec['build']
   }
   ~> consul::service { $service_name:
-  #checks => [
-  #  {
-  #    tcp      => "localhost:${api_port}",
-  #    interval => '10s',
-  #  }
-  #],
+  checks => [
+    {
+      tcp      => "localhost:${api_port}",
+      interval => '10s',
+    }
+  ],
   port   => $api_port,
   }
 }

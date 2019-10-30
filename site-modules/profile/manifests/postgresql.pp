@@ -11,7 +11,7 @@ class profile::postgresql {
 
   class { 'postgresql::server':
     listen_addresses        => '*',
-    ip_mask_allow_all_users => '192.168.0.0/1'
+    ip_mask_allow_all_users => '192.168.0.0/16'
   }
 
   postgresql::server::db { $dbname:
