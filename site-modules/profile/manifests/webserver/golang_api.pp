@@ -49,7 +49,7 @@ class profile::webserver::golang_api {
     File { "${repo_path}/${environment_file}":
       ensure  => file,
       content => epp("${module_name}/env.epp", $env_vars),
-      mode    => 0400,  #only root should be able to read the file
+      mode    => '0400',  #only root should be able to read the file
       require => Vcsrepo[$repo_path],
     }
   }
