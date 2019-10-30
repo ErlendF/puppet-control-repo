@@ -3,6 +3,7 @@ This is the control repo used automatically by [IaC-Heat-A](https://gitlab.com/e
 We all edit files from Johan's setup using vscode live share, so he will have a vast majority of commits ;)
 
 # Testing
+For unit testing we use rspec-puppet. For acceptance testing we use Serverspec.
 
 ## Unit testing
 To run the unit tests, simply cd into site-modules/profile/ and run rake.
@@ -25,17 +26,17 @@ And add the following: (note that the Host-field should match the hosts variable
 ````
 Host balancer01.iac
      HostName <ip to machine>
-     User root
+     User ubuntu
      Port 22
      IdentityFile <path to private key>
 Host database01.iac
      HostName <ip to machine>
-     User root
+     User ubuntu
      Port 22
      IdentityFile <path to private key>
 Host frontend00.iac
      HostName <ip to machine>
-     User root
+     User ubuntu
      Port 22     
      IdentityFile <path to private key>
 ````
