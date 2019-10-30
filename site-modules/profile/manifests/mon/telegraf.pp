@@ -1,3 +1,6 @@
+#
+# profile::mon::telegraf
+# 
 class profile::mon::telegraf (
   String $password = $profile::mon::params::influxdb_password,
   String $database = $profile::mon::params::influxdb_database,

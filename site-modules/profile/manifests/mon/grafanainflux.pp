@@ -53,7 +53,7 @@ class profile::mon::grafanainflux (
 
 
   grafana_dashboard { 'telegraf':
-    grafana_url      => 'http://localhost:8080',
+    grafana_url      => $grafana_url,
     grafana_user     => $grafana_user,
     grafana_password => $grafana_password,
     content          => template("${module_name}/telegraf.json")
