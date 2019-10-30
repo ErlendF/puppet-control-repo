@@ -20,7 +20,7 @@ vi ~/.ssh/config
 
 ````
 
-And add the following.
+And add the following: (note that the Host-field should match the hosts variable in the Rakefile)
 
 ````
 Host balancer01.iac
