@@ -35,8 +35,3 @@ describe file('/etc/nginx/sites-available/puppetdb.iacprosjekt.ntnu.conf') do
     it { should be_file }
     it { should contain 'listen *:80' }
 end
-
-describe file('/etc/nginx/sites-available/sensu.iacprosjekt.ntnu.conf') do
-    it { should be_file }
-    it { should contain 'listen *:80' }
-end
