@@ -17,16 +17,16 @@ class profile::postgresql {
   postgresql::server::db { $dbname:
     user     => $uname,
     password => postgresql_password($uname, $pass),
+    require  => Class['postgresql::server']
   }
-
-  postgresql::server::pg_hba_rule { 'allow golang network to access app database':
+  -> postgresql::server::pg_hba_rule { 'allow golang network to access app database':
     description => "Open up postgresql for access from ${access_address}",
     type        => 'host',
     database    => $dbname,
     user        => $uname,
     address     => $access_address,
     auth_method => 'md5',
-}
+  }
 
   consul::service { 'postgres':
   checks => [
