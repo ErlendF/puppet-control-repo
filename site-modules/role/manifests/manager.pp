@@ -8,5 +8,5 @@ class role::manager {
   include ::profile::dns::server
   include ::profile::consul::server
 
-  #include ::profile::mon::telegraf
+  include ::profile::mon::telegraf
 }
