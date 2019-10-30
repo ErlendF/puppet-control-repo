@@ -9,11 +9,29 @@ describe service('nginx') do
 end
 
 describe port(80) do
-    it { should be_listening }
+    it { should be_listening.with('tcp') }
 end
 
 describe file('/etc/nginx/sites-available') do
     it { should be_directory }
+end
+
+# checks that web API is running
+describe command('curl web.service.consul') do
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match /Success!/ }
+end
+
+# checks that grafana is running
+describe command('curl grafana.service.consul:8080') do 
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match /Found/ }
+end
+
+# checks that the puppetboard is up and running
+describe command('curl http://puppetdb.service.consul:5000') do 
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match /Puppetboard/ }
 end
 
 #

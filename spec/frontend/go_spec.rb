@@ -10,6 +10,12 @@ describe command('/usr/local/go/bin/go version') do
     its(:stdout) { should match 'go version go1.13.3' }
 end
 
+# checks that the website is up and running
+describe command('curl localhost') do 
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match /Success!/ }
+end
+
 # custom service for application
 describe service('web') do
     it { should be_running }
