@@ -10,10 +10,9 @@ class profile::mon::webmon () inherits profile::mon::telegraf {
   #   }
   # }
 
-  telegraf::inputs { 'http_check':
+  telegraf::input { 'http_check':
     plugin_type => 'http_response',
     options     => {
-      'interval'         => '60s',
       'method'           => 'GET',
       'follow_redirects' => true,
       'urls'             => 'http://puppetdb.service.consul:5000'
