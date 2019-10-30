@@ -15,9 +15,9 @@ base_manager::ubuntu_ssh_keys:
 puppetdb::puppetdb_host: puppetdb.node.consul
 puppetdb::postgres_host: puppetdb.service.consul
 
-postgresql::pass: land
-postgresql::uname: go
-postgresql::db_name: goland
+postgresql::pass: testvalue
+postgresql::uname: testvalue
+postgresql::db_name: testvalue
 postgresql::address: postgres.service.consul
 postgresql::access_address: 192.168.0.0/16
 
@@ -30,7 +30,7 @@ webserver::golang_api::repo_url: https://bitbucket.org/ErlendFonnes/test-rest.gi
 webserver::golang_api::service_name: web
 webserver::golang_api::description: My Golang REST API
 webserver::golang_api::environment_file: .env
-webserver::golang_api::environment_variables: ["DB_HOST=postgres.service.consul", "DB_PORT=5432", "DB_USER=go", "DB_PASSWORD=land", "DB_NAME=goland", "SQL_DIR=/root/webserverRepo/sql", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
+webserver::golang_api::environment_variables: ["DB_HOST=postgres.service.consul", "DB_PORT=5432", "DB_USER=testvalue", "DB_PASSWORD=testvalue", "DB_NAME=testvalue", "SQL_DIR=/root/webserverRepo/sql", "DB_MAXOPEN=20", "DB_MAXIDLE=15"]
 
 nginx::servers:
   - puppetdb.iacprosjekt.ntnu: http://puppetdb.service.consul:5000
