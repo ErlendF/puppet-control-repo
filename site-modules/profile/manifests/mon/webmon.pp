@@ -3,7 +3,7 @@
 #
 class profile::mon::webmon () inherits profile::mon::telegraf {
   $nginx_servers = lookup('nginx::servers')
-  $servers_arr = []
+  $servers_arr = Array[String]
   $nginx_servers.each |Hash $server| {
     $server.each |String $name, String $address| {
       servers_arr << $address
