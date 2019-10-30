@@ -12,10 +12,11 @@ class profile::mon::webmon () inherits profile::mon::telegraf {
 
   telegraf::input { 'http_check':
     plugin_type => 'http_response',
-    options     => {
-      'method'           => 'GET',
-      'follow_redirects' => true,
-      'urls'             => 'http://puppetdb.service.consul:5000'
+    options     => [
+      {
+        'method'           => 'GET',
+        'follow_redirects' => true,
+        'urls'             => 'http://puppetdb.service.consul:5000'
       #[
         # $nginx_servers['puppetdb.iacprosjekt.ntnu'],
         # $nginx_servers['consul.iacprosjekt.ntnu'],
@@ -23,5 +24,6 @@ class profile::mon::webmon () inherits profile::mon::telegraf {
         # $nginx_servers['grafana.iacprosjekt.ntnu']
       #],
     },
+    ]
   }
 }
