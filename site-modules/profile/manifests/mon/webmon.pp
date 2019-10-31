@@ -3,6 +3,12 @@
 #
 class profile::mon::webmon () inherits profile::mon::telegraf {
   $servers = lookup('nginx::servers')
+
+  # Attempted to import urls dynamically, similarly to how ssh_keys are imported in base_manager.
+  # However, none of these methods seemed to function as intended, and the documentation was unclear, to say the least.
+  # Therefore, the urls have been hardcoded for the time being, as it was not seen as a priority.
+
+
   # $servers_arr = Array[String]
   # $servers.each |Hash $server| {
   #   $server.each |String $name, String $address| {
