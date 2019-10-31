@@ -16,8 +16,6 @@ class profile::webserver::golang_api {
   $db_pass = Sensitive(lookup('postgresql::pass', undef, undef, ''))
   $golang_version = lookup('webserver::golang_api::golang_version', undef, undef, '1.13.3')
 
-  notify { "sensitive: ${db_pass}": }
-
   class { 'golang':
     version   => $golang_version,
   }
