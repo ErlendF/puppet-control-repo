@@ -31,7 +31,7 @@ class profile::mon::webmon () inherits profile::mon::telegraf {
         'urls'             => [
           'http://puppetdb.service.consul:5000',
           'http://consul.service.consul:8500/',
-          'http://web.service.consul/',
+          'http://web.service.consul/post',
           'http://grafana.service.consul:8080/'
         ],
       },

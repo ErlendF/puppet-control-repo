@@ -41,4 +41,3 @@ nginx::servers:
 mon::telegraf::database: "telegrafdb"
 mon::telegraf::username: "telegrafuser"
 mon::params::grafanauser: "admin"
-mon::params::grafana_password: "notadmin"
