@@ -24,7 +24,7 @@ class profile::mon::grafanainflux (
       },
       security => {
         admin_user     => $grafana_user,
-        admin_password => $grafana_password,
+        admin_password => $grafana_password.unwrap,
       },
       database => {
         type => 'sqlite3',
