@@ -12,6 +12,10 @@ class profile::mon::grafanainflux (
 
 ) inherits profile::mon::params {
 
+  package { 'influxdb-client':
+    ensure => latest,
+  }
+
   class { 'grafana':
     cfg => {
       app_mode => 'production',
@@ -36,6 +40,8 @@ class profile::mon::grafanainflux (
     ensure         => present,
     admin_username => $influx_username,
     admin_password => $influx_password
+
+    require        => Package['influxdb-client'],
   }
 
   grafana_datasource { 'influxdb':
