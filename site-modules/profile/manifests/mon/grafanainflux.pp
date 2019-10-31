@@ -34,15 +34,6 @@ class profile::mon::grafanainflux (
     },
   }
 
-  grafana_user { $grafana_user:
-    grafana_url      => $grafana_url,
-    grafana_user     => $grafana_user,
-    grafana_password => $grafana_password,
-    full_name        => 'John Doe',
-    email            => 'john@example.com',
-    is_admin         => true
-  }
-
   class {'influxdb': }
 
   influxdb::database{$influx_database:
