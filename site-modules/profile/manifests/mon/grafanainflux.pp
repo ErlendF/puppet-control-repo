@@ -64,6 +64,13 @@ class profile::mon::grafanainflux (
     content          => template("${module_name}/telegraf.json")
   }
 
+    grafana_dashboard { 'HTTP_MON':
+    grafana_url      => $grafana_url,
+    grafana_user     => $grafana_user,
+    grafana_password => $grafana_password,
+    content          => template("${module_name}/HTTP_mon.json")
+  }
+
   consul::service { 'influx':
     checks => [
       {
