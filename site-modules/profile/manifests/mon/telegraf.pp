@@ -2,7 +2,7 @@
 # profile::mon::telegraf
 # 
 class profile::mon::telegraf (
-  String $password = $profile::mon::params::influxdb_password,
+  Sensitive $password = $profile::mon::params::influxdb_password,
   String $database = $profile::mon::params::influxdb_database,
   String $username = $profile::mon::params::influxdb_user,
 ) inherits profile::mon::params {
@@ -18,7 +18,7 @@ class profile::mon::telegraf (
                 'urls'     => [ $influx_url ],
                 'database' => $database,
                 'username' => $username,
-                'password' => $password,
+                'password' => $password.unwrap,
             }
         ]
     },

@@ -16,7 +16,7 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": 2,
-    "iteration": 1572523062507,
+    "iteration": 1572540455214,
     "links": [],
     "panels": [
       {
@@ -398,7 +398,7 @@
                 "condition": "AND",
                 "key": "server",
                 "operator": "=",
-                "value": "http://web.service.consul/"
+                "value": "http://web.service.consul/post"
               }
             ]
           }
@@ -569,11 +569,11 @@
         "legend": {
           "alignAsTable": false,
           "avg": true,
-          "current": true,
+          "current": false,
           "hideEmpty": false,
           "max": true,
-          "min": true,
-          "rightSide": false,
+          "min": false,
+          "rightSide": true,
           "show": true,
           "total": false,
           "values": true
@@ -585,7 +585,7 @@
           "dataLinks": []
         },
         "percentage": false,
-        "pointradius": 2,
+        "pointradius": 1,
         "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
@@ -787,7 +787,7 @@
                 "condition": "AND",
                 "key": "server",
                 "operator": "=",
-                "value": "http://web.service.consul/"
+                "value": "http://web.service.consul/post"
               }
             ]
           }
@@ -839,10 +839,11 @@
         "dashLength": 10,
         "dashes": false,
         "datasource": "influxdb",
+        "decimals": null,
         "editable": true,
         "error": false,
         "fill": 1,
-        "fillGradient": 0,
+        "fillGradient": 5,
         "grid": {},
         "gridPos": {
           "h": 8,
@@ -864,15 +865,15 @@
           "values": true
         },
         "lines": true,
-        "linewidth": 1,
+        "linewidth": 2,
         "links": [],
         "nullPointMode": "connected",
         "options": {
           "dataLinks": []
         },
         "percentage": false,
-        "pointradius": 5,
-        "points": false,
+        "pointradius": 2,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [
           {
@@ -1026,7 +1027,7 @@
         }
       }
     ],
-    "refresh": false,
+    "refresh": "10s",
     "schemaVersion": 20,
     "style": "dark",
     "tags": [],
@@ -1035,7 +1036,6 @@
         {
           "allValue": null,
           "current": {
-            "tags": [],
             "text": "loadbalancer",
             "value": [
               "loadbalancer"
@@ -1216,5 +1216,5 @@
     "timezone": "",
     "title": "HTTP MON",
     "uid": "YozwAaAWz",
-    "version": 10
+    "version": 14
   }

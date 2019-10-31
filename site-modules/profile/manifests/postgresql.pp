@@ -5,7 +5,7 @@
 class profile::postgresql {
 
   $uname = lookup('postgresql::uname')
-  $pass  = lookup('postgresql::pass')
+  $pass  = Sensitive(lookup('postgresql::pass'))
   $access_address = lookup('postgresql::access_address', undef, undef, '0.0.0.0/0')
   $dbname = lookup('postgresql::db_name', undef, undef, 'postgres')
 
@@ -16,7 +16,7 @@ class profile::postgresql {
 
   postgresql::server::db { $dbname:
     user     => $uname,
-    password => postgresql_password($uname, $pass),
+    password => postgresql_password($uname, $pass.unwrap),
     require  => Class['postgresql::server']
   }
   -> postgresql::server::pg_hba_rule { 'allow golang network to access app database':
