@@ -13,7 +13,7 @@ class profile::webserver::golang_api {
   $description = lookup('webserver::golang_api::description', undef, undef, 'My Golang REST API')
   $environment_file = lookup('webserver::golang_api::environment_file', undef, undef, '')
   $environment_variables = lookup('webserver::golang_api::environment_variables', undef, undef, [])
-  $db_pass = lookup('postgresql::pass', undef, undef, '')
+  $db_pass = Sensitive(lookup('postgresql::pass', undef, undef, ''))
   $golang_version = lookup('webserver::golang_api::golang_version', undef, undef, '1.13.3')
 
   class { 'golang':
