@@ -2,10 +2,10 @@
 # role::manager
 #
 class role::manager {
-  include ::profile::base_linux
-  include ::profile::base_manager
-  include ::profile::dns::client
-  include ::profile::dns::server
-  include ::profile::consul::server
-  include ::profile::mon::telegraf
+  contain ::profile::base_linux
+  contain ::profile::base_manager
+  contain ::profile::dns::client
+  contain ::profile::dns::server
+  contain ::profile::consul::server
+  contain ::profile::mon::telegraf
 }
