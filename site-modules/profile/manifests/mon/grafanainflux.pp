@@ -40,6 +40,8 @@ class profile::mon::grafanainflux (
     ensure         => present,
     admin_username => $influx_username,
     admin_password => $influx_password
+
+    require        => Package['influxdb-client'],
   }
 
 #####grafana_datasource { 'influxdb':
