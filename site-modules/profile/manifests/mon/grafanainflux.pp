@@ -23,8 +23,8 @@ class profile::mon::grafanainflux (
         http_port     => 8080,
       },
       security => {
-        admin_user     => 'test',
-        admin_password => 'test',
+        admin_user     => $grafana_user,
+        admin_password => $grafana_password,
       },
       database => {
         type => 'sqlite3',
