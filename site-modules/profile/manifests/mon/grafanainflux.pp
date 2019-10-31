@@ -44,8 +44,8 @@ class profile::mon::grafanainflux (
 
   grafana_datasource { 'influxdb':
     grafana_url      => $grafana_url,
-    grafana_user     => 'test',
-    grafana_password => 'test',
+    grafana_user     => $grafana_user,
+    grafana_password => $grafana_password,
     type             => 'influxdb',
     url              => 'http://mon.node.consul:8086',
     user             => $influx_username,
@@ -58,8 +58,8 @@ class profile::mon::grafanainflux (
 
   grafana_dashboard { 'telegraf':
     grafana_url      => $grafana_url,
-    grafana_user     => 'test',
-    grafana_password => 'test',
+    grafana_user     => $grafana_user,
+    grafana_password => $grafana_password,
     content          => template("${module_name}/telegraf.json")
   }
 
