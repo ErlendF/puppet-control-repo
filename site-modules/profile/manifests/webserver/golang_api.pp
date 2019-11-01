@@ -16,6 +16,7 @@ class profile::webserver::golang_api {
   $db_pass = Sensitive(lookup('postgresql::pass', undef, undef, ''))
   $golang_version = lookup('webserver::golang_api::golang_version', undef, undef, '1.13.3')
 
+  #Ensures the specified version of golang is installed
   class { 'golang':
     version   => $golang_version,
   }
@@ -24,6 +25,7 @@ class profile::webserver::golang_api {
     ensure => latest,
   }
 
+  #Cloning the repository at $repo_url with git as provider
   vcsrepo { $repo_path:
     ensure   => latest,
     provider => git,
@@ -31,15 +33,20 @@ class profile::webserver::golang_api {
     require  => Package['git'],
   }
 
+  #bin_dir is the folder where the executable version of the Golang application should live
   file { "${repo_path}/${bin_dir}":
     ensure  => 'directory',
     require => Vcsrepo[$repo_path],
   }
 
+  #Hashfile contains the commithash of the built version of the Golang application
   file { "${repo_path}/${bin_dir}/hashfile":
     ensure  => 'file',
     require => File["${repo_path}/${bin_dir}"],
   }
+
+  #If the environment_file is specified, ensures that it is present and filled with apropriate content
+  #based on the env.epp template
   if $environment_file != '' {
     $env_vars = {
       'envvars' => $environment_variables,
@@ -80,9 +87,10 @@ class profile::webserver::golang_api {
     'environment_file' => "${repo_path}/${environment_file}",
   }
 
+  #Creates the service file for the Golang application using the web.service.epp template
   systemd::unit_file { "${service_name}.service":
     content => epp("${module_name}/web.service.epp", $service_config_hash),
-  }
+  } #ensures the service is running
   ~> service { $service_name:
     ensure    => 'running',
     subscribe => Exec['build']
