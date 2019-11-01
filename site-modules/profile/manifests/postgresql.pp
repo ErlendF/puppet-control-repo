@@ -14,11 +14,12 @@ class profile::postgresql {
     ip_mask_allow_all_users => '192.168.0.0/16'
   }
 
+  #Adding a database to the postgres server
   postgresql::server::db { $dbname:
     user     => $uname,
     password => postgresql_password($uname, $pass.unwrap),
     require  => Class['postgresql::server']
-  }
+  } #allowing the user access to the server remotely
   -> postgresql::server::pg_hba_rule { 'allow golang network to access app database':
     description => "Open up postgresql for access from ${access_address}",
     type        => 'host',
