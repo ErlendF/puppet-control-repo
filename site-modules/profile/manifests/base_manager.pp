@@ -12,13 +12,6 @@ class profile::base_manager {
     mode   => '0700',
   }
 
-  package { 'toml-rb':
-    ensure   => present,
-    provider => puppetserver_gem,
-    notify   => Service['puppetserver']
-  }
-
-
   #adds each key from the ssh_keys array to autorized_keys
   $ssh_keys.each |Hash $key_hash| {
     $key_hash.each |String $name, String $key| {
@@ -30,6 +23,13 @@ class profile::base_manager {
             require => File['/home/ubuntu/.ssh'],
       }
     }
+  }
+
+  # Needed for telegraf
+  package { 'toml-rb':
+    ensure   => present,
+    provider => puppetserver_gem,
+    notify   => Service['puppetserver']
   }
 
   $puppetdb_host = lookup('puppetdb::puppetdb_host')
