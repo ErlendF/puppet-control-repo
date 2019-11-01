@@ -1,7 +1,6 @@
 #
 # profile::mon::grafanainflux
 # 
-
 class profile::mon::grafanainflux (
   Sensitive $grafana_password = $profile::mon::params::grafana_password,
   String $grafana_user = $profile::mon::params::grafana_user,

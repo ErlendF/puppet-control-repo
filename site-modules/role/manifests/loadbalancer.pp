@@ -8,5 +8,4 @@ class role::loadbalancer {
   include ::profile::nginx
   include ::profile::mon::webmon
   Class['::profile::consul::client'] -> Class['::profile::nginx']
-  #include ::profile::sensu::agent
 }

@@ -1,7 +1,6 @@
 #
 # profile::dns::server
 #
-
 class profile::dns::server {
   dnsmasq::conf { 'local-dns':
     ensure => present,
