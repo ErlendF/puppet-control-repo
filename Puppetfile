@@ -7,18 +7,6 @@ forge 'https://forge.puppet.com'
 #mod 'puppetlabs/concat',  '6.0.0'
 #mod 'puppetlabs-haproxy', '4.1.0'
 
-# Modules from Git
-# Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
-#mod 'apache',
-#  git:    'https://github.com/puppetlabs/puppetlabs-apache',
-#  commit: '1b6f89afdde0df7f9433a163d5c4b5328eac5779'
-
-#mod 'apache',
-#  git:    'https://github.com/puppetlabs/puppetlabs-apache',
-#  branch: 'docs_experiment'
-#
-
-# From previous lab
 mod 'KyleAnderson-consul',    '5.1.0'
 mod 'camptocamp-systemd',     '2.6.0'
 mod 'crayfishx-hiera_http',   '3.4.0'
@@ -45,9 +33,7 @@ mod 'puppet-puppetboard',     '5.0.0'
 mod 'puppet-python',          '3.0.1'
 mod 'puppetlabs-apache',      '5.1.0'
 mod 'puppetlabs-powershell',  '2.3.0'
-mod 'sensu-sensu',            '3.9.0'
 mod 'puppet-nginx',           '1.0.0'
-mod 'concrete-nagios',        '2.5.0'
 mod 'richardc-datacat',       '0.6.2'
 mod 'leinaddm-htpasswd',      '0.0.3'
 mod 'stahnma-epel',           '1.3.1'
